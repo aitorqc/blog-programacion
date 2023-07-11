@@ -1,8 +1,8 @@
 <?php
 $query = 'SELECT * FROM posts';
-$selAllPostsQuery = mysqli_query($connection, $query);
+$select_all_posts_query = mysqli_query($connection, $query);
 
-while ($row = mysqli_fetch_assoc($selAllPostsQuery)) {
+while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
     $post_title = $row['post_title'];
     $post_author = $row['post_author'];
     $post_date = $row['post_date'];

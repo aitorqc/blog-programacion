@@ -18,7 +18,7 @@
             </h1>
 
             <!-- Blog Posts -->
-            <?php include './includes/posts.php'; ?>
+            <?php include './includes/searched_posts.php'; ?>
 
             <!-- Pager -->
             <ul class="pager">
