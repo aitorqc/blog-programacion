@@ -134,7 +134,7 @@
                 </ul>
             </li>
             <li class="active">
-                <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Categories</a>
+                <a href="./categories.php"><i class="fa fa-fw fa-file"></i> Categories</a>
             </li>
             <li>
                 <a href="index-rtl.html"><span class="glyphicon glyphicon-comment"></span> Comments</a>
