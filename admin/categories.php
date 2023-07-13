@@ -3,7 +3,7 @@
 <?php include './includes/admin_modal_delete.php'; ?>
 
 <!-- functions -->
-<?php include './functions.php'; ?>
+<?php include './functions/categories_functions.php'; ?>
 <?php
 $add_error = false;
 $cat_title_edit = false;
@@ -54,43 +54,11 @@ $update_error = false;
                         $update_error = update_categorie();
                         delete_categorie();
                         ?>
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <label for="cat_title">Edit Category</label>
-                                <input class="form-control" type="text" name="update_cat_title" value="<?php if (isset($cat_title_edit)) {
-                                                                                                            echo $cat_title_edit;
-                                                                                                        }; ?>" <?php echo isset($cat_title_edit) && $cat_title_edit ? '' : 'disabled'; ?>>
-                            </div>
-                            <div class="form-group">
-                                <input class="btn btn-primary" type="submit" name="submit" value="Edit Category" value="<?php if (isset($cat_title_edit)) {
-                                                                                                                            echo $cat_title_edit;
-                                                                                                                        }; ?>" <?php echo isset($cat_title_edit) && $cat_title_edit ? '' : 'disabled'; ?>>
-                            </div>
-                            <?php if ($update_error) {
-                                echo "
-                            <div class='alert alert-danger' role='alert'>
-                                {$update_error}
-                            </div>";
-                            } ?>
-                        </form>
+                        <?php include './includes/admin_form_edit_categorie.php'; ?>
                     </div>
 
                     <div class="col-xs-6">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Category Title</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                show_categories();
-                                ?>
-                            </tbody>
-                        </table>
+                        <?php include './includes/admin_view_all_categories.php';?>
                     </div>
                 </div>
             </div>
@@ -99,6 +67,5 @@ $update_error = false;
     </div>
 
 </div>
-<!-- /#wrapper -->
 
 <?php include './includes/admin_footer.php'; ?>

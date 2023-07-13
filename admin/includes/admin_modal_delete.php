@@ -6,10 +6,37 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: white;
-        padding: 20px;
+        padding: 20px 30px 30px;
         border: 1px solid #ccc;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         z-index: 9999;
+    }
+
+    .popup p{
+        margin-top: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .popup form{
+        display: flex;
+        justify-content: end;
+        margin-top: 3rem;
+    }
+
+    .popup form button{
+        color: white;
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        padding: .8rem;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        border-radius: 0.5rem;
+    }
+
+    .popup form button:first-child{
+        margin-right: 1rem;
+        background-color: #dc3545;
+        border-color: #dc3545;
     }
 
     .popup-overlay {
@@ -25,8 +52,8 @@
 
 <div class="popup-overlay" id="popupOverlay" style="display: none;"></div>
 <div class="popup" id="popup" style="display: none;">
-    <h2>Confirmar eliminación</h2>
-    <p>¿Estás seguro de que deseas eliminar la categoría <?php echo $_REQUEST['del_cat_title']; ?> ?</p>
+    <h2>Confirm deletion</h2>
+    <p>Are you sure you want to delete the <b><?php echo $_REQUEST['del_cat_title']; ?></b> category?</p>
     <form method="post">
         <button type="submit">Eliminar</button>
         <button type="button" onclick="hidePopup()">Cancelar</button>

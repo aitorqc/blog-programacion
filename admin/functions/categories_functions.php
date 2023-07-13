@@ -130,7 +130,7 @@ function update_categorie()
     }
 }
 
-// Show Categorie
+// Show Categories
 function show_categories()
 {
     global $connection;

@@ -18,15 +18,11 @@
                     </h1>
                 </div>
             </div>
-            <!-- /.row -->
 
         </div>
-        <!-- /.container-fluid -->
 
     </div>
-    <!-- /#page-wrapper -->
 
 </div>
-<!-- /#wrapper -->
 
 <?php include './includes/admin_footer.php'; ?>

@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">SB Admin</a>
+        <a class="navbar-brand" href="../admin/">SB Admin</a>
     </div>
 
     <!-- Top Menu Items -->
@@ -126,14 +126,17 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><span class="glyphicon glyphicon-list-alt"></span> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="posts_dropdown" class="collapse">
                     <li>
-                        <a href="#">Dropdown Item</a>
+                        <a href="./posts.php">View Posts</a>
                     </li>
                     <li>
-                        <a href="#">Dropdown Item</a>
+                        <a href="posts.php?source=add_post">Add Post</a>
+                    </li>
+                    <li>
+                        <a href="posts.php?source=edit_post">Edit Post</a>
                     </li>
                 </ul>
             </li>
-            <li class="active">
+            <li>
                 <a href="./categories.php"><i class="fa fa-fw fa-file"></i> Categories</a>
             </li>
             <li>
