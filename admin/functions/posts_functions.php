@@ -35,15 +35,30 @@ function show_posts()
     }
 }
 
-function delete_post(){
+// Delete Post
+function delete_post()
+{
     global $connection;
-    
+
     if (isset($_GET['delete'])) {
         $the_post_id = $_GET['delete'];
         $query = "DELETE FROM posts WHERE post_id={$the_post_id}";
-    
+
         $delete_query = mysqli_query($connection, $query);
-    
+
         header("Location: ./posts.php");
+    }
+}
+
+// Check Image
+function check_image($the_post_id)
+{
+    global $connection;
+    
+    $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
+    $select_image = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_array($select_image)) {
+        return $post_image = $row['post_image'];
     }
 }

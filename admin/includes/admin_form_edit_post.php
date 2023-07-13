@@ -17,8 +17,8 @@ if (isset($_GET['p_id'])) {
 }
 
 if (isset($_POST['update_post'])) {
-    $post_title        = $_POST['title'];
-    $post_author       = $_POST['author'];
+    $post_title        = $_POST['post_title'];
+    $post_author       = $_POST['post_author'];
     $post_category_id  = $_POST['post_category'];
     $post_status       = $_POST['post_status'];
     $post_image        = $_FILES['image']['name'];
@@ -32,6 +32,10 @@ if (isset($_POST['update_post'])) {
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
+    if (empty($post_image)) {
+        $post_image = check_image($the_post_id);
+    }
+
     $query = "UPDATE posts SET ";
     $query .= "post_title  = '{$post_title}', ";
     $query .= "post_category_id = '{$post_category_id}', ";
@@ -44,9 +48,9 @@ if (isset($_POST['update_post'])) {
     $query .= "WHERE post_id = {$the_post_id} ";
 
 
-    $create_post_query = mysqli_query($connection, $query);
+    $update_post_query = mysqli_query($connection, $query);
 
-    if (!$create_post_query) {
+    if (!$update_post_query) {
         die('QUERY FAILED' . mysqli_error($connection));
     } else {
         header("location: posts.php");
@@ -57,7 +61,7 @@ if (isset($_POST['update_post'])) {
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Post Title</label>
-        <input type="text" class="form-control" name="title" value="<?php echo htmlspecialchars(stripslashes($post_title)); ?>">
+        <input type="text" class="form-control" name="post_title" value="<?php echo htmlspecialchars(stripslashes($post_title)); ?>">
     </div>
 
     <div class="form-group">
@@ -93,9 +97,9 @@ if (isset($_POST['update_post'])) {
                 $post_author = $row['post_author'];
 
                 if ($post_id == $post_category_id) {
-                    echo "<option selected value='{$post_id}'>{$post_author}</option>";
+                    echo "<option selected value='{$post_author}'>{$post_author}</option>";
                 } else {
-                    echo "<option value='{$post_id}'>{$post_author}</option>";
+                    echo "<option value='{$post_author}'>{$post_author}</option>";
                 }
             }
             ?>
