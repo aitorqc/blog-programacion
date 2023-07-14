@@ -4,11 +4,11 @@
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Blog Search</h4>
-        <form action="search.php" method="post">
+        <form action="index.php" method="get">
             <div class="input-group">
                 <input name="search_term" type="text" class="form-control" placeholder="Search for...">
                 <div class="input-group-btn">
-                    <button name="submit" type="submit" class="btn btn-default" aria-label="Help">
+                    <button type="submit" class="btn btn-default" aria-label="Help">
                         GO
                     </button>
                 </div>
@@ -29,9 +29,10 @@
                 <ul class="list-unstyled">
                     <?php
                     while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
+                        $cat_id = $row['cat_id'];
                         $cat_title = $row['cat_title'];
 
-                        echo "<li><a href='#'>{$cat_title}</a>";
+                        echo "<li><a href='index.php?category=$cat_id'>{$cat_title}</a>";
                     }
                     ?>
                 </ul>

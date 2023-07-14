@@ -18,7 +18,18 @@
             </h1>
 
             <!-- Blog Posts -->
-            <?php include './includes/all_posts.php'; ?>
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                if (isset($_GET['search_term'])) {
+                    include './includes/tags_posts.php';
+                } else if (isset($_GET['category'])) {
+                    include './includes/category_posts.php';
+                } else {
+                    include './includes/all_posts.php';
+                }
+            }
+
+            ?>
 
             <!-- Pager -->
             <ul class="pager">
