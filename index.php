@@ -18,7 +18,7 @@
             </h1>
 
             <!-- Blog Posts -->
-            <?php include './includes/posts.php'; ?>
+            <?php include './includes/all_posts.php'; ?>
 
             <!-- Pager -->
             <ul class="pager">
@@ -36,8 +36,8 @@
         <?php include './includes/sidebar.php'; ?>
 
     </div>
-    <!-- /.row -->
 
     <hr>
 
+    <!-- Footer -->
     <?php include './includes/footer.php'; ?>

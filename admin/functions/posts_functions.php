@@ -12,7 +12,7 @@ function show_posts()
         $post_id = $row['post_id'];
         $post_author = $row['post_author'];
         $post_title = $row['post_title'];
-        $post_category = $row['post_category_id'];
+        $post_category_id = $row['post_category_id'];
         $post_status = $row['post_status'];
         $post_image = $row['post_image'];
         $post_tags = $row['post_tags'];
@@ -23,7 +23,7 @@ function show_posts()
         <td>{$post_id}</td>
         <td>{$post_author}</td>
         <td>{$post_title}</td>
-        <td>{$post_category}</td>
+        <td>{$post_category_id}</td>
         <td>{$post_status}</td>
         <td>{$post_image}</td>
         <td>{$post_tags}</td>
