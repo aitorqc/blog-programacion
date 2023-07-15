@@ -137,7 +137,7 @@
                 <a href="./categories.php"><i class="fa fa-fw fa-file"></i> Categories</a>
             </li>
             <li>
-                <a href="index-rtl.html"><span class="glyphicon glyphicon-comment"></span> Comments</a>
+                <a href="./comments.php"><span class="glyphicon glyphicon-comment"></span> Comments</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><span class="glyphicon glyphicon-user"></span> Users <i class="fa fa-fw fa-caret-down"></i></a>

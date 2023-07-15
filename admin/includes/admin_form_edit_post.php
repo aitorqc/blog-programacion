@@ -25,7 +25,6 @@ if (isset($_POST['update_post'])) {
     $post_image_temp   = $_FILES['image']['tmp_name'];
     $post_tags         = $_POST['post_tags'];
     $post_content      = $_POST['post_content'];
-    $post_date         = date('d-m-y');
 
     $post_author = strtolower($post_author);
     $post_tags = strtolower($post_tags);
@@ -55,6 +54,8 @@ if (isset($_POST['update_post'])) {
     } else {
         header("location: posts.php");
     }
+} else if (isset($_POST['cancel_update_post'])) {
+    header("location: ./posts.php");
 }
 ?>
 
@@ -139,5 +140,6 @@ if (isset($_POST['update_post'])) {
 
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="update_post" value="Publish Post">
+        <input class="btn btn-danger" type="submit" name="cancel_update_post" value="Cancel">
     </div>
 </form>

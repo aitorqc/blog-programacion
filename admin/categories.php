@@ -1,6 +1,6 @@
 <?php include '../includes/db.php'; ?>
 <?php include './includes/admin_header.php'; ?>
-<?php include './includes/admin_modal_delete.php'; ?>
+<?php include './includes/admin_modal_categorie_delete.php'; ?>
 
 <!-- functions -->
 <?php include './functions/categories_functions.php'; ?>
@@ -50,15 +50,15 @@ $update_error = false;
                         <?php
                         // Delete or Update Categories
                         pre_delete_categorie();
+                        delete_categorie();
                         $cat_title_edit = pre_update_categorie();
                         $update_error = update_categorie();
-                        delete_categorie();
                         ?>
                         <?php include './includes/admin_form_edit_categorie.php'; ?>
                     </div>
 
                     <div class="col-xs-6">
-                        <?php include './includes/admin_view_all_categories.php';?>
+                        <?php include './includes/admin_view_all_categories.php'; ?>
                     </div>
                 </div>
             </div>
