@@ -1,5 +1,26 @@
 <?php
 
+// Show Categories
+function show_categories()
+{
+    global $connection;
+
+    $query = 'SELECT * FROM categories';
+    $select_categories = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_assoc($select_categories)) {
+        $cat_id = $row['cat_id'];
+        $cat_title = $row['cat_title'];
+
+        echo "<tr>
+        <td>{$cat_id}</td>
+        <td>{$cat_title}</td>
+        <td><a href='categories.php?delete={$cat_id}&del_cat_title={$cat_title}'>Delete</a></td>
+        <td><a href='categories.php?edit={$cat_id}'>Edit</a></td>
+        </tr>";
+    }
+}
+
 // Add Categorie
 function add_categorie()
 {
@@ -130,23 +151,3 @@ function update_categorie()
     }
 }
 
-// Show Categories
-function show_categories()
-{
-    global $connection;
-
-    $query = 'SELECT * FROM categories';
-    $select_categories = mysqli_query($connection, $query);
-
-    while ($row = mysqli_fetch_assoc($select_categories)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
-
-        echo "<tr>
-        <td>{$cat_id}</td>
-        <td>{$cat_title}</td>
-        <td><a href='categories.php?delete={$cat_id}&del_cat_title={$cat_title}'>Delete</a></td>
-        <td><a href='categories.php?edit={$cat_id}'>Edit</a></td>
-        </tr>";
-    }
-}

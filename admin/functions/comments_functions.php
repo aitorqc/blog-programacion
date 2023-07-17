@@ -12,26 +12,90 @@ function show_comments()
         $comment_author = $row['comment_author'];
         $comment_email = $row['comment_email'];
         $comment_content = $row['comment_content'];
+        $comment_approve = $row['comment_approve'];
         $comment_date = $row['comment_date'];
+
+        $comment_post_id = $row['comment_post_id'];
 
         echo "<tr>
             <td>$comment_id</td>
             <td>$comment_author</td>
-            <td>$comment_email</td>
             <td>$comment_content</td>
-            <td>$comment_date</td>
+            <td>$comment_email</td>";
+
+        $query = "SELECT * from posts WHERE post_id='$comment_post_id'";
+        $select_post_query = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($select_post_query)) {
+            $post_title = $row['post_title'];
+            echo "<td><a href='../index.php?p_id=$comment_post_id'>$post_title</a></td>";
+        }
+
+        echo "<td>" . (($comment_approve) ? "True" : "False") . "</td>";
+        echo "<td>$comment_date</td>
             <td>
                 <form action='./comments.php' method='post'>
                     <input type='hidden' name='delete' value='{$comment_id}'>
                     <input type='submit' value='Delete'>
                 </form>
             </td>
-            <td><a href='comments.php?source=edit_post&p_id=$comment_id'>Edit</a></td>
+            <td><a href='comments.php?source=edit_comment&c_id=$comment_id'>Edit</a></td>
+            <td><a href='comments.php?approve_comment&c_id=$comment_id'>Approve</a></td>
         </tr>";
     }
 }
 
-// <td><a href='comments.php?delete=$comment_id'>Delete</a></td>
+// Update Comment
+function update_comment()
+{
+    global $connection;
+
+    if (isset($_POST['update_comment'])) {
+        $comment_content      = $_POST['comment_content'];
+
+        $query = "UPDATE comments SET ";
+        $query .= "comment_content  = '{$comment_content}', ";
+        $query .= "comment_date   =  now() ";
+        $query .= "WHERE comment_id = {$the_comment_id} ";
+
+
+        $update_comment_query = mysqli_query($connection, $query);
+
+        if (!$update_comment_query) {
+            die('QUERY FAILED' . mysqli_error($connection));
+        } else {
+            header("location: ./comments.php");
+        }
+    } else if (isset($_POST['cancel_update_comment'])) {
+        header("location: ./comments.php");
+    }
+}
+
+// Approve Comment
+function approve_comment()
+{
+    global $connection;
+
+    if (isset($_GET['approve_comment'])) {
+        $the_comment_id = $_GET['c_id'];
+
+        $query = "SELECT comment_approve from comments WHERE comment_id='$the_comment_id'";
+        $select_comment_query = mysqli_query($connection, $query);
+
+        while ($row = mysqli_fetch_assoc($select_comment_query)) {
+            $comment_approve = $row['comment_approve'];
+        }
+
+        $comment_approve = !$comment_approve;
+
+        $query = "UPDATE comments SET ";
+        $query .= "comment_approve  = '{$comment_approve}' ";
+        $query .= "WHERE comment_id = {$the_comment_id} ";
+
+        $update_comment_query = mysqli_query($connection, $query);
+
+        header("location: comments.php");
+    }
+}
 
 // Delete Comments
 function pre_delete_comment()

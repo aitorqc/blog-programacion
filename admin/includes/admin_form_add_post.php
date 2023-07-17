@@ -1,32 +1,5 @@
 <?php
-if (isset($_POST['create_post'])) {
-
-    $post_title        = $_POST['post_title'];
-    $post_author       = $_POST['post_author'];
-    $post_category_id  = $_POST['post_category'];
-    $post_status       = $_POST['post_status'];
-    $post_image        = $_FILES['image']['name'];
-    $post_image_temp   = $_FILES['image']['tmp_name'];
-    $post_tags         = $_POST['post_tags'];
-    $post_content      = $_POST['post_content'];
-    $post_date         = date('d-m-y');
-
-    $post_author = strtolower($post_author);
-    $post_tags = strtolower($post_tags);
-
-    move_uploaded_file($post_image_temp, "../images/$post_image");
-
-    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) 
-    VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') ";
-
-    $create_post_query = mysqli_query($connection, $query);
-
-    if (!$create_post_query) {
-        die('QUERY FAILED' . mysqli_error($connection));
-    } else {
-        header("location: posts.php");
-    }
-}
+add_post();
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">

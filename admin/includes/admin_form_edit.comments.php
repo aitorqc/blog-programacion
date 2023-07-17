@@ -1,6 +1,6 @@
 <?php
-if (isset($_GET['p_id'])) {
-    $the_comment_id = $_GET['p_id'];
+if (isset($_GET['c_id'])) {
+    $the_comment_id = $_GET['c_id'];
     $query = "SELECT * FROM comments WHERE comment_id={$the_comment_id}";
 
     $select_comment_query = mysqli_query($connection, $query);
@@ -13,25 +13,7 @@ if (isset($_GET['p_id'])) {
     }
 }
 
-if (isset($_POST['update_comment'])) {
-    $comment_content      = $_POST['comment_content'];
-
-    $query = "UPDATE comments SET ";
-    $query .= "comment_content  = '{$comment_content}', ";
-    $query .= "comment_date   =  now() ";
-    $query .= "WHERE comment_id = {$the_comment_id} ";
-
-
-    $update_comment_query = mysqli_query($connection, $query);
-
-    if (!$update_comment_query) {
-        die('QUERY FAILED' . mysqli_error($connection));
-    } else {
-        header("location: ./comments.php");
-    }
-} else if (isset($_POST['cancel_update_comment'])) {
-    header("location: ./comments.php");
-}
+update_comment();
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">

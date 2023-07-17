@@ -31,3 +31,4 @@ if (isset($_GET['p_id'])) {
     <hr>
 
 <?php } ?>
+<?php include 'comments.php'; ?>
