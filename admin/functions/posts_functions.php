@@ -22,7 +22,7 @@ function show_posts()
         echo "<tr>
         <td>{$post_id}</td>
         <td>{$post_author}</td>
-        <td>{$post_title}</td>
+        <td><a href='../index.php?p_id=$post_id'>$post_title</a></td>
         <td>{$post_category_id}</td>
         <td>{$post_status}</td>
         <td>{$post_image}</td>

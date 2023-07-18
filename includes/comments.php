@@ -14,6 +14,10 @@ if (isset($_POST['create_comment'])) {
     if (!$create_comment_query) {
         die("QUERY FAILED" . mysqli_error($connection));
     }
+
+    $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 
+    WHERE post_id = $comment_post_id";
+    $update_comment_count = mysqli_query($connection, $query);
 }
 ?>
 
@@ -40,18 +44,6 @@ if (isset($_POST['create_comment'])) {
 <hr>
 
 <!-- Comment -->
-<div class="media">
-    <a class="pull-left" href="#">
-        <img class="media-object" src="http://placehold.it/64x64" alt="">
-    </a>
-    <div class="media-body">
-        <h4 class="media-heading">User
-            <small>August 25, 2014 at 9:30 PM</small>
-        </h4>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-    </div>
-</div>
-
 
 <?php
 $comment_post_id = $_GET['p_id'];
@@ -75,8 +67,8 @@ while ($row = mysqli_fetch_array($select_comment_query)) {
 
     $comment_date_format = $date_day . " at " . $date_hour;
 
-    echo ($comment_approve) ? 
-    "<div class='media'>
+    echo ($comment_approve) ?
+        "<div class='media'>
         <a class='pull-left' href='#'>
             <img class='media-object' src='http://placehold.it/64x64' alt=''>
         </a>
@@ -87,7 +79,7 @@ while ($row = mysqli_fetch_array($select_comment_query)) {
             $comment_content
         </div>
     </div>" :
-    "<div class='media'>
+        "<div class='media'>
         <a class='pull-left' href='#'>
             <img class='media-object' src='http://placehold.it/64x64' alt=''>
         </a>
@@ -99,7 +91,5 @@ while ($row = mysqli_fetch_array($select_comment_query)) {
     </div>";
 }
 ?>
-
-<!-- Comment -->
 
 </div>

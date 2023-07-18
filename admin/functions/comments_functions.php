@@ -132,10 +132,40 @@ function delete_comment()
         $the_commment_id = $_REQUEST['confirm_delete'];
         $escaped_id = mysqli_real_escape_string($connection, $the_commment_id);
 
+        $comment_post_id = select_comment_id($escaped_id);
+
+        update_comment_count($comment_post_id);
+
         $query = "DELETE FROM comments WHERE comment_id='$escaped_id'";
         $delete_comment = mysqli_query($connection, $query);
 
         header("Location: " . 'comments.php');
         exit();
     }
+}
+
+function select_comment_id($escaped_id)
+{
+    global $connection;
+
+    $query = "SELECT comment_post_id FROM comments 
+    WHERE comment_id='$escaped_id'";
+
+    $select_post_id = mysqli_query($connection, $query);
+
+    $row = mysqli_fetch_assoc($select_post_id);
+
+    $comment_post_id = $row['comment_post_id'];
+
+    return $comment_post_id;
+}
+
+function update_comment_count($comment_post_id)
+{
+    global $connection;
+
+    $query = "UPDATE posts SET post_comment_count = post_comment_count - 1 
+    WHERE post_id = $comment_post_id";
+
+    $update_comment_count = mysqli_query($connection, $query);
 }
