@@ -45,7 +45,7 @@ function show_comments()
 }
 
 // Update Comment
-function update_comment()
+function update_comment($the_comment_id)
 {
     global $connection;
 

@@ -58,7 +58,7 @@ function add_post()
         move_uploaded_file($post_image_temp, "../images/$post_image");
 
         $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) 
-        VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') ";
+        VALUES('{$post_category_id}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
 
         $create_post_query = mysqli_query($connection, $query);
 
@@ -71,7 +71,7 @@ function add_post()
 }
 
 // Update Post
-function update_post()
+function update_post($the_post_id)
 {
     global $connection;
 
@@ -118,6 +118,19 @@ function update_post()
     }
 }
 
+// Check Image
+function check_image($the_post_id)
+{
+    global $connection;
+
+    $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
+    $select_image = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_array($select_image)) {
+        return $post_image = $row['post_image'];
+    }
+}
+
 // Delete Post
 function delete_post()
 {
@@ -130,18 +143,5 @@ function delete_post()
         $delete_query = mysqli_query($connection, $query);
 
         header("Location: ./posts.php");
-    }
-}
-
-// Check Image
-function check_image($the_post_id)
-{
-    global $connection;
-
-    $query = "SELECT * FROM posts WHERE post_id = $the_post_id ";
-    $select_image = mysqli_query($connection, $query);
-
-    while ($row = mysqli_fetch_array($select_image)) {
-        return $post_image = $row['post_image'];
     }
 }

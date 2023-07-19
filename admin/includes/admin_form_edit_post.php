@@ -16,7 +16,7 @@ if (isset($_GET['p_id'])) {
     }
 }
 
-update_post();
+update_post($the_post_id);
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -26,8 +26,8 @@ update_post();
     </div>
 
     <div class="form-group">
-        <label for="category">Category</label>
-        <select name="post_category" id="">
+        <label for="post_category">Category</label>
+        <select name="post_category" id="post_category">
             <?php
             $query = "SELECT * FROM categories";
             $select_categories = mysqli_query($connection, $query);

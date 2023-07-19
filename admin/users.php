@@ -2,7 +2,7 @@
 <?php include './includes/admin_header.php'; ?>
 
 <!-- functions -->
-<?php include './functions/posts_functions.php'; ?>
+<?php include './functions/users_functions.php'; ?>
 
 <div id="wrapper">
 
@@ -30,15 +30,15 @@
 
                     switch ($source) {
                         case 'add_user':
-                            include './includes/admin_form_add_post.php';
+                            include './includes/admin_form_add_user.php';
                             break;
 
                         case 'edit_user':
-                            include './includes/admin_form_edit_post.php';
+                            include './includes/admin_form_edit_user.php';
                             break;
 
                         default:
-                            include 'includes/admin_view_all_posts.php';
+                            include 'includes/admin_view_all_users.php';
                             break;
                     }
                     ?>

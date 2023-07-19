@@ -13,7 +13,7 @@ if (isset($_GET['c_id'])) {
     }
 }
 
-update_comment();
+update_comment($the_comment_id);
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">
