@@ -23,9 +23,6 @@
                     </h1>
 
                     <?php
-                    pre_delete_comment();
-                    delete_comment();
-
                     if (isset($_GET['source'])) {
                         $source = $_GET['source'];
                     } else {

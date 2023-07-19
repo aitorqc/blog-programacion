@@ -16,6 +16,8 @@
     <tbody>
         <!-- LLamada a la funcion que carga todos los posts -->
         <?php show_comments(); ?>
+        <?php pre_delete_comment(); ?>
+        <?php delete_comment(); ?>
         <?php approve_comment(); ?>
     </tbody>
 </table>

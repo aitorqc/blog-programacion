@@ -88,10 +88,10 @@ function update_post($the_post_id)
         $post_author = strtolower($post_author);
         $post_tags = strtolower($post_tags);
 
-        move_uploaded_file($post_image_temp, "../images/$post_image");
-
         if (empty($post_image)) {
             $post_image = check_image($the_post_id);
+        }else{
+            move_uploaded_file($post_image_temp, "../images/$post_image");
         }
 
         $query = "UPDATE posts SET ";
@@ -104,7 +104,6 @@ function update_post($the_post_id)
         $query .= "post_content= '{$post_content}', ";
         $query .= "post_image  = '{$post_image}' ";
         $query .= "WHERE post_id = {$the_post_id} ";
-
 
         $update_post_query = mysqli_query($connection, $query);
 

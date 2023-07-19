@@ -31,7 +31,12 @@ function show_users()
         <td>{$user_image}</td>
         <td>{$user_role}</td>
         <td>{$user_randSalt}</td>
-        <td><a href='users.php?delete=$user_id'>Delete</a></td>
+        <td>
+        <form action='./users.php' method='post'>
+            <input type='hidden' name='delete' value='{$user_id}'>
+            <input type='submit' value='Delete'>
+        </form>
+        </td>
         <td>" . (($user_role === "admin") ? "<a href='users.php?source=edit_user&u_id=$user_id'>Edit</a>" : "No Editable") . "</td>
         </tr>";
     }
@@ -96,7 +101,7 @@ function update_user($the_user_id)
 
         if (empty($user_image)) {
             $user_image = check_image($the_user_id);
-        }else{
+        } else {
             move_uploaded_file($user_image_temp, "../images/users_avatars/$user_image");
         }
 
@@ -132,5 +137,50 @@ function check_image($the_user_id)
 
     while ($row = mysqli_fetch_array($select_image)) {
         return $user_image = $row['user_image'];
+    }
+}
+
+// Delete User
+function pre_delete_user()
+{
+    global $connection;
+
+    if (isset($_POST['delete'])) {
+        $user_id = $_REQUEST['delete'];
+
+        $query = "SELECT * FROM users WHERE user_id='$user_id'";
+        $select_user = mysqli_query($connection, $query);
+
+        // $row = mysqli_fetch_assoc($select_user);
+        // $username = $row['username'];
+
+        if (isset($select_user) && mysqli_num_rows($select_user) > 0) {
+            echo "<script>
+                showPopup(); // Mostrar el popup
+                var deleteURL = 'users.php?confirm_delete={$user_id}';
+
+                // Redirigir a la página de eliminación al hacer clic en 'Eliminar'
+                document.querySelector('#popup form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    window.location.href = deleteURL;
+                });
+            </script>";
+        }
+    }
+}
+
+function delete_user()
+{
+    global $connection;
+
+    if (isset($_GET['confirm_delete'])) {
+        $the_user_id = $_REQUEST['confirm_delete'];
+        $escaped_id = mysqli_real_escape_string($connection, $the_user_id);
+
+        $query = "DELETE FROM users WHERE user_id='$escaped_id'";
+        $delete_user = mysqli_query($connection, $query);
+
+        header("Location: " . 'users.php');
+        exit();
     }
 }

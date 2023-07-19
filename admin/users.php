@@ -1,5 +1,6 @@
 <?php include '../includes/db.php'; ?>
 <?php include './includes/admin_header.php'; ?>
+<?php include './includes/admin_modal_user_delete.php'; ?>
 
 <!-- functions -->
 <?php include './functions/users_functions.php'; ?>

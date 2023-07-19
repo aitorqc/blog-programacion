@@ -17,5 +17,7 @@
     <tbody>
         <!-- LLamada a la funcion que carga todos los usuarios -->
         <?php show_users(); ?>
+        <?php pre_delete_user(); ?>
+        <?php delete_user(); ?>
     </tbody>
 </table>
