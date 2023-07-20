@@ -1,5 +1,5 @@
 <?php
-add_user();
+$error = add_user();
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -61,6 +61,13 @@ add_user();
             <option value="admin">Admin</option>
         </select>
     </div>
+
+    <?php if ($error) {
+        echo "
+        <div class='alert alert-danger' role='alert'>
+            {$error}
+        </div>";
+    } ?>
 
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="create_user" value="Publish Post">

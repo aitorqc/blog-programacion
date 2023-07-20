@@ -1,3 +1,8 @@
+<?php
+ob_start(); // Iniciar el almacenamiento en búfer de salida 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

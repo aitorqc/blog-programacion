@@ -53,7 +53,7 @@
 <div class="popup-overlay" id="popupOverlay" style="display: none;"></div>
 <div class="popup" id="popup" style="display: none;">
     <h2>Confirm deletion</h2>
-    <p>Are you sure you want to delete this user?</p>
+    <p>Are you sure you want to delete the  user <b></b> ?</p>
     <form method="post">
         <button type="submit">Delete</button>
         <button type="button" onclick="hidePopup()">Cancel</button>
@@ -61,7 +61,9 @@
 </div>
 
 <script>
-    function showPopup() {
+    function showPopup(username) {
+        var popupBElement = document.querySelector('.popup b');
+        popupBElement.textContent = username;
         document.getElementById('popupOverlay').style.display = 'block';
         document.getElementById('popup').style.display = 'block';
     }

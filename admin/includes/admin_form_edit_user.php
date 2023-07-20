@@ -15,7 +15,7 @@ if (isset($_GET['u_id'])) {
     }
 }
 
-update_user($the_user_id);
+$error = update_user($the_user_id);
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -97,6 +97,13 @@ update_user($the_user_id);
             ?>
         </select>
     </div>
+
+    <?php if ($error) {
+        echo "
+        <div class='alert alert-danger' role='alert'>
+            {$error}
+        </div>";
+    } ?>
 
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="update_user" value="Create User">

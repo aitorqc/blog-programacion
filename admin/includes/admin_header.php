@@ -1,4 +1,22 @@
-<?php ob_start(); ?>
+<?php
+ob_start(); // Iniciar el almacenamiento en búfer de salida
+session_start();
+?>
+
+<?php
+if (isset($_SESSION['user_role'])) {
+    if ($_SESSION['user_role'] !== 'admin') {
+        header("Location: ../index.php");
+        exit();
+    } else {
+        // header("Location: ./index.php");
+        // exit();
+    }
+} else {
+    header("Location: ../index.php");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">

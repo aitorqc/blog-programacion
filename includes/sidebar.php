@@ -1,3 +1,5 @@
+<?php include './functions/login.php'; ?>
+
 <!-- Blog Sidebar Widgets Column -->
 <div class="col-md-4">
 
@@ -14,8 +16,18 @@
                 </div>
             </div>
         </form>
-        <!-- /.input-group -->
     </div>
+
+    <!-- Login -->
+    <?php
+    $error = user_login();
+
+    if($_SESSION['user_role'] == "admin"){
+
+    }else{
+        include 'login_form.php';
+    }
+    ?>
 
     <!-- Blog Categories Well -->
     <div class="well">

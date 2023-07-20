@@ -65,16 +65,35 @@ function add_user()
 
         move_uploaded_file($user_image_temp, "../images/users_avatars/$user_image");
 
-        $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_image, user_role) 
+        if (check_user($username)) {
+            return "User already exists";
+        } else {
+            $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_image, user_role) 
         VALUES('{$username}', '{$user_password}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_image}', '{$user_role}') ";
 
-        $create_user_query = mysqli_query($connection, $query);
+            $create_user_query = mysqli_query($connection, $query);
 
-        if (!$create_user_query) {
-            die('QUERY FAILED' . mysqli_error($connection));
-        } else {
-            header("location: users.php");
+            if (!$create_user_query) {
+                die('QUERY FAILED' . mysqli_error($connection));
+            } else {
+                header("location: users.php");
+            }
         }
+    }
+}
+
+// Check User
+function check_user($username)
+{
+    global $connection;
+
+    $query = "SELECT * FROM users WHERE username='$username'";
+    $select_user = mysqli_query($connection, $query);
+
+    if (mysqli_num_rows($select_user) > 0) {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -105,22 +124,26 @@ function update_user($the_user_id)
             move_uploaded_file($user_image_temp, "../images/users_avatars/$user_image");
         }
 
-        $query = "UPDATE users SET ";
-        $query .= "username  = '{$username}', ";
-        $query .= "user_password = '{$user_password}', ";
-        $query .= "user_firstname   =  '{$user_firstname}', ";
-        $query .= "user_lastname = '{$user_lastname}', ";
-        $query .= "user_email = '{$user_email}', ";
-        $query .= "user_image   = '{$user_image}', ";
-        $query .= "user_role= '{$user_role}' ";
-        $query .= "WHERE user_id = {$the_user_id} ";
-
-        $update_user_query = mysqli_query($connection, $query);
-
-        if (!$update_user_query) {
-            die('QUERY FAILED' . mysqli_error($connection));
+        if (check_user($username)) {
+            return "User already exists";
         } else {
-            header("location: users.php");
+            $query = "UPDATE users SET ";
+            $query .= "username  = '{$username}', ";
+            $query .= "user_password = '{$user_password}', ";
+            $query .= "user_firstname   =  '{$user_firstname}', ";
+            $query .= "user_lastname = '{$user_lastname}', ";
+            $query .= "user_email = '{$user_email}', ";
+            $query .= "user_image   = '{$user_image}', ";
+            $query .= "user_role= '{$user_role}' ";
+            $query .= "WHERE user_id = {$the_user_id} ";
+
+            $update_user_query = mysqli_query($connection, $query);
+
+            if (!$update_user_query) {
+                die('QUERY FAILED' . mysqli_error($connection));
+            } else {
+                header("location: users.php");
+            }
         }
     } else if (isset($_POST['cancel_update_user'])) {
         header("location: ./users.php");
@@ -151,12 +174,11 @@ function pre_delete_user()
         $query = "SELECT * FROM users WHERE user_id='$user_id'";
         $select_user = mysqli_query($connection, $query);
 
-        // $row = mysqli_fetch_assoc($select_user);
-        // $username = $row['username'];
-
         if (isset($select_user) && mysqli_num_rows($select_user) > 0) {
+            $row = mysqli_fetch_array($select_user);
+            $username = $row['username'];
             echo "<script>
-                showPopup(); // Mostrar el popup
+                showPopup('" . $username . "'); // Mostrar el popup
                 var deleteURL = 'users.php?confirm_delete={$user_id}';
 
                 // Redirigir a la página de eliminación al hacer clic en 'Eliminar'

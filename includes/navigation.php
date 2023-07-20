@@ -30,10 +30,32 @@
                         </li>";
                 }
                 ?>
-                <li>
-                    <a href="admin">Admin</a>
-                </li>
             </ul>
+
+            <?php
+            if ($_SESSION['user_role'] == 'admin') {
+                echo "
+                    <p class='navbar-text navbar-right h4'>
+                        <a href='admin'>ADMIN</a>
+                    </p>";
+            } else if ($_SESSION['user_role'] == 'user') {
+                echo "
+                    <ul class='nav navbar-nav navbar-right'>
+                        <li class='dropdown'>
+                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user'></i>" . $_SESSION['username'] . "<b class='caret'></b></a>
+                            <ul class='dropdown-menu'>
+                                <li>
+                                    <a href='#'><i class='fa fa-fw fa-user'></i> Profile</a>
+                                </li>
+                                <li>
+                                    <a href='./functions/logout.php'><i class='fa fa-fw fa-power-off'></i> Log Out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>";
+            } else {
+            }
+            ?>
         </div>
         <!-- /.navbar-collapse -->
     </div>
