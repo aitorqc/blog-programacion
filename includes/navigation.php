@@ -33,13 +33,14 @@
             </ul>
 
             <?php
-            if ($_SESSION['user_role'] == 'admin') {
-                echo "
+            if (isset($_SESSION['user_role'])) {
+                if ($_SESSION['user_role'] == 'admin') {
+                    echo "
                     <p class='navbar-text navbar-right h4'>
                         <a href='admin'>ADMIN</a>
                     </p>";
-            } else if ($_SESSION['user_role'] == 'user') {
-                echo "
+                } else if ($_SESSION['user_role'] == 'user') {
+                    echo "
                     <ul class='nav navbar-nav navbar-right'>
                         <li class='dropdown'>
                             <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user'></i>" . $_SESSION['username'] . "<b class='caret'></b></a>
@@ -53,7 +54,8 @@
                             </ul>
                         </li>
                     </ul>";
-            } else {
+                } else {
+                }
             }
             ?>
         </div>

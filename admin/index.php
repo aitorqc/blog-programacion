@@ -1,3 +1,4 @@
+<?php include '../includes/db.php'; ?>
 <?php include './includes/admin_header.php'; ?>
 
 <div id="wrapper">
@@ -14,10 +15,12 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">
                         Welcome to Admin
-                        <small><?php echo $_SESSION['user_role']; ?></small>
+                        <small><?php echo $_SESSION['username']; ?></small>
                     </h1>
                 </div>
             </div>
+
+            <?php include './includes/dashboard.php'; ?>
 
         </div>
 
