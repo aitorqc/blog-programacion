@@ -16,6 +16,7 @@ function user_login()
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['firstname'] = $row['user_firstname'];
                 $_SESSION['lastname'] = $row['user_lastname'];
+                $_SESSION['email'] = $row['user_email'];
                 $_SESSION['user_role'] = $row['user_role'];
             }
            

@@ -1,46 +1,47 @@
 <?php
 if (isset($_POST['create_comment'])) {
     $comment_post_id = $_GET['p_id'];
-    $comment_author = $_POST['comment_author'];
-    $comment_author = strtolower($comment_author);
-    $comment_email = $_POST['comment_email'];
+    $comment_author = $_SESSION['username'];
+    $comment_email = $_SESSION['email'];
     $comment_content = $_POST['comment_content'];
 
-    $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_date) 
+    if (!empty($comment_content)) {
+        $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_date) 
     VALUES ('{$comment_post_id}', '{$comment_author}', '{$comment_email}', '{$comment_content}', now())";
 
-    $create_comment_query = mysqli_query($connection, $query);
+        $create_comment_query = mysqli_query($connection, $query);
 
-    if (!$create_comment_query) {
-        die("QUERY FAILED" . mysqli_error($connection));
-    }
+        if (!$create_comment_query) {
+            die("QUERY FAILED" . mysqli_error($connection));
+        }
 
-    $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 
+        $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 
     WHERE post_id = $comment_post_id";
-    $update_comment_count = mysqli_query($connection, $query);
+        $update_comment_count = mysqli_query($connection, $query);
+    }
 }
 ?>
 
 <!-- Comments Form -->
-<div class="well">
-    <h4>Leave a Comment:</h4>
-    <form action="" method="post" role="form">
-        <div>
-            <label for="comment_author">Author</label>
-            <input type="text" id="comment_author" class="form-control" name="comment_author">
+<?php
+if (isset($_SESSION['user_role'])) {
+    echo "
+    <div class='well'>
+        <h4>Leave a Comment:</h4>
+        <div class='row'>
+            <div class='col-xs-6'>".$_SESSION['username']."</div> 
+            <div class='col-xs-6 text-right'>".$_SESSION['email']."</div>
         </div>
-        <div>
-            <label for="comment_email">Email</label>
-            <input type="email" id="comment_email" class="form-control" name="comment_email">
-        </div>
-        <div class="form-group">
-            <label for="comment_content">Your Comment</label>
-            <textarea id="comment_content" class="form-control" name="comment_content" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" name="create_comment">Submit</button>
-    </form>
-</div>
-
+        <form action='' method='post' role='form'>
+            <div class='form-group' style='margin-top: 1rem;'>
+                <label for='comment_content'>Your Comment</label>
+                <textarea id='comment_content' class='form-control' name='comment_content' rows='3'></textarea>
+            </div>
+            <button type='submit' class='btn btn-primary' name='create_comment'>Submit</button>
+        </form>
+    </div>";
+}
+?>
 <hr>
 
 <!-- Comment -->
