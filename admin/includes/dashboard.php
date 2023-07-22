@@ -121,28 +121,25 @@
 
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                    ['Data', 'Count', 'Inactive'],
+                    ['Data', 'Count', 'Eliminated'],
+                    
                     <?php
                     $post_count = num_of_posts();
                     $category_count = num_of_categories();
                     $user_count = num_of_users();
                     $count_comments = num_of_comments();
 
-                    $element_text = ['Posts', 'Categories', 'Users', 'Comments'];
-                    $data = [$post_count, $category_count, $user_count, $count_comments];
-                    sort($data);
-                    $element_count = $data;
+                    $element_text = ['Posts' => $post_count, 'Categories' => $category_count, 'Users' => $user_count, 'Comments' => $count_comments];
 
-                    for($i=0; $i<count($element_count); $i++){
-                        echo "['{$element_text[$i]}'". "," . "'{$element_count[$i]}'". "," . "'{$element_count[$i]}'],";
+                    foreach ($element_text as $key => $value) {
+                        echo "['{$key}'" . "," . "{$value}," . (($key == 'Users') ? 1 : 0) . "],";
                     }
                     ?>
                 ]);
 
                 var options = {
                     chart: {
-                        title: 'Company Performance',
-                        subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                        title: 'Blog Statics',
                     }
                 };
 

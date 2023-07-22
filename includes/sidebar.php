@@ -21,10 +21,8 @@
     <!-- Login -->
     <?php
     $error = user_login();
-
-    if($_SESSION['user_role'] == "admin"){
-
-    }else{
+    if (isset($_SESSION['user_role'])) {
+    } else {
         include 'login_form.php';
     }
     ?>

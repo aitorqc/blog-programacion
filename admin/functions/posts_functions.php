@@ -20,6 +20,7 @@ function show_posts()
         $post_date = $row['post_date'];
 
         echo "<tr>
+        <th><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='$post_id'></th>
         <td>{$post_id}</td>
         <td>{$post_author}</td>
         <td><a href='../index.php?p_id=$post_id'>$post_title</a></td>
