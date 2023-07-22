@@ -30,7 +30,12 @@ function show_posts()
         <td>{$post_tags}</td>
         <td>{$post_comments}</td>
         <td>{$post_date}</td>
-        <td><a href='posts.php?delete=$post_id'>Delete</a></td>
+        <td>
+        <form action='./posts.php' method='post'>
+            <input type='hidden' name='delete' value='{$post_id}'>
+            <input type='submit' value='Delete'>
+        </form>
+        </td>
         <td><a href='posts.php?source=edit_post&p_id=$post_id'>Edit</a></td>
         </tr>";
     }
@@ -91,7 +96,7 @@ function update_post($the_post_id)
 
         if (empty($post_image)) {
             $post_image = check_image($the_post_id);
-        }else{
+        } else {
             move_uploaded_file($post_image_temp, "../images/$post_image");
         }
 
@@ -132,16 +137,46 @@ function check_image($the_post_id)
 }
 
 // Delete Post
+function pre_delete_post()
+{
+    global $connection;
+
+    if (isset($_POST['delete'])) {
+        $post_id = $_REQUEST['delete'];
+
+        $query = "SELECT * FROM posts WHERE post_id='$post_id'";
+        $select_post = mysqli_query($connection, $query);
+
+        if (isset($select_post) && mysqli_num_rows($select_post) > 0) {
+            $row = mysqli_fetch_array($select_post);
+            $post_title = $row['post_title'];
+            echo "<script>
+                showPopup('" . $post_title . "'); // Mostrar el popup
+                var deleteURL = 'posts.php?confirm_delete={$post_id}';
+
+                // Redirigir a la página de eliminación al hacer clic en 'Eliminar'
+                document.querySelector('#popup form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    window.location.href = deleteURL;
+                });
+            </script>";
+        }
+    }
+}
+
+// Delete Post
 function delete_post()
 {
     global $connection;
 
-    if (isset($_GET['delete'])) {
-        $the_post_id = $_GET['delete'];
-        $query = "DELETE FROM posts WHERE post_id={$the_post_id}";
+    if (isset($_GET['confirm_delete'])) {
+        $the_post_id = $_REQUEST['confirm_delete'];
+        $escaped_id = mysqli_real_escape_string($connection, $the_post_id);
 
-        $delete_query = mysqli_query($connection, $query);
+        $query = "DELETE FROM posts WHERE post_id='$escaped_id'";
+        $delete_post = mysqli_query($connection, $query);
 
-        header("Location: ./posts.php");
+        header("Location: " . 'posts.php');
+        exit();
     }
 }

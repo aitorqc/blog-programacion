@@ -55,6 +55,7 @@ if (isset($_POST['checkBoxArray'])) {
         <tbody>
             <!-- LLamada a la funcion que carga todos los posts -->
             <?php show_posts(); ?>
+            <?php pre_delete_post(); ?>
             <?php delete_post(); ?>
         </tbody>
     </table>
