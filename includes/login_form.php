@@ -28,12 +28,14 @@
                 </script>
             </div>
         </div>
-        <?php if ($error) {
+        <?php
+        if ($error) {
             echo "
-                    <div class='alert alert-danger' role='alert'>
-                        {$error}
-                    </div>";
-        } ?>
+            <div class='alert alert-danger' role='alert'>
+                {$error}
+            </div>";
+        }
+        ?>
         <div class="form-group">
             <button class="btn btn-primary" name="login" type="submit">Submit</button>
         </div>

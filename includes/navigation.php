@@ -37,7 +37,7 @@
                 if ($_SESSION['user_role'] == 'admin') {
                     echo "
                     <p class='navbar-text navbar-right h4'>
-                        <a href='admin'>ADMIN</a>
+                        <a href='admin'>Admin</a>
                     </p>";
                 } else if ($_SESSION['user_role'] == 'user') {
                     echo "
@@ -56,6 +56,11 @@
                     </ul>";
                 } else {
                 }
+            } else {
+                echo "
+                <p class='navbar-text navbar-right h4'>
+                    <a href='registration.php'>Register</a>
+                </p>";
             }
             ?>
         </div>

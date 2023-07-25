@@ -58,25 +58,43 @@ function add_user()
         $user_image_temp   = $_FILES['user_image']['tmp_name'];
         $user_role = $_POST['user_role'];
 
-        $username = strtolower($username);
-        $user_firstname = strtolower($user_firstname);
-        $user_lastname = strtolower($user_lastname);
-        $user_role = strtolower($user_role);
-
-        move_uploaded_file($user_image_temp, "../images/users_avatars/$user_image");
-
-        if (check_user($username)) {
-            return "User already exists";
+        if (empty($username) || empty($user_email) || empty($user_password) || empty($user_firstname) || empty($user_lastname)) {
+            return "Fields can't be empty";
         } else {
-            $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_image, user_role) 
-        VALUES('{$username}', '{$user_password}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_image}', '{$user_role}') ";
-
-            $create_user_query = mysqli_query($connection, $query);
-
-            if (!$create_user_query) {
-                die('QUERY FAILED' . mysqli_error($connection));
+            if (check_user($username)) {
+                return "User already exist";
             } else {
-                header("location: users.php");
+                $username = htmlspecialchars(($username));
+                $user_email = htmlspecialchars(($user_email));
+                $user_password = htmlspecialchars(($user_password));
+                $user_firstname = htmlspecialchars(($user_firstname));
+                $user_lastname = htmlspecialchars(($user_lastname));
+
+                move_uploaded_file($user_image_temp, "../images/users_avatars/$user_image");
+
+                $query = "SELECT user_randSalt FROM users";
+                $select_randSalt_query = mysqli_query($connection, $query);
+
+                if (!$select_randSalt_query) {
+                    die("QUERY FAILED" . mysqli_error($connection));
+                } else {
+                    while ($row = mysqli_fetch_array($select_randSalt_query)) {
+                        $salt = $row['user_randSalt'];
+                    }
+
+                    $user_password = crypt($user_password, $salt);
+
+                    $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_image, user_role) 
+                VALUES('{$username}', '{$user_password}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_image}', '{$user_role}') ";
+
+                    $create_user_query = mysqli_query($connection, $query);
+
+                    if (!$create_user_query) {
+                        die('QUERY FAILED' . mysqli_error($connection));
+                    } else {
+                        header("location: index.php");
+                    }
+                }
             }
         }
     }
@@ -127,6 +145,15 @@ function update_user($the_user_id)
         if (check_user($username)) {
             return "User already exists";
         } else {
+            $query = "SELECT user_randSalt FROM users";
+            $select_randSalt_query = mysqli_query($connection, $query);
+
+            while ($row = mysqli_fetch_array($select_randSalt_query)) {
+                $salt = $row['user_randSalt'];
+            }
+
+            $user_password = crypt($user_password, $salt);
+
             $query = "UPDATE users SET ";
             $query .= "username  = '{$username}', ";
             $query .= "user_password = '{$user_password}', ";
