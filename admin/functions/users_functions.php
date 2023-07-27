@@ -142,35 +142,31 @@ function update_user($the_user_id)
             move_uploaded_file($user_image_temp, "../images/users_avatars/$user_image");
         }
 
-        if (check_user($username)) {
-            return "User already exists";
+        $query = "SELECT user_randSalt FROM users";
+        $select_randSalt_query = mysqli_query($connection, $query);
+
+        while ($row = mysqli_fetch_array($select_randSalt_query)) {
+            $salt = $row['user_randSalt'];
+        }
+
+        $user_password = crypt($user_password, $salt);
+
+        $query = "UPDATE users SET ";
+        $query .= "username  = '{$username}', ";
+        $query .= "user_password = '{$user_password}', ";
+        $query .= "user_firstname   =  '{$user_firstname}', ";
+        $query .= "user_lastname = '{$user_lastname}', ";
+        $query .= "user_email = '{$user_email}', ";
+        $query .= "user_image   = '{$user_image}', ";
+        $query .= "user_role= '{$user_role}' ";
+        $query .= "WHERE user_id = {$the_user_id} ";
+
+        $update_user_query = mysqli_query($connection, $query);
+
+        if (!$update_user_query) {
+            die('QUERY FAILED' . mysqli_error($connection));
         } else {
-            $query = "SELECT user_randSalt FROM users";
-            $select_randSalt_query = mysqli_query($connection, $query);
-
-            while ($row = mysqli_fetch_array($select_randSalt_query)) {
-                $salt = $row['user_randSalt'];
-            }
-
-            $user_password = crypt($user_password, $salt);
-
-            $query = "UPDATE users SET ";
-            $query .= "username  = '{$username}', ";
-            $query .= "user_password = '{$user_password}', ";
-            $query .= "user_firstname   =  '{$user_firstname}', ";
-            $query .= "user_lastname = '{$user_lastname}', ";
-            $query .= "user_email = '{$user_email}', ";
-            $query .= "user_image   = '{$user_image}', ";
-            $query .= "user_role= '{$user_role}' ";
-            $query .= "WHERE user_id = {$the_user_id} ";
-
-            $update_user_query = mysqli_query($connection, $query);
-
-            if (!$update_user_query) {
-                die('QUERY FAILED' . mysqli_error($connection));
-            } else {
-                header("location: users.php");
-            }
+            header("location: users.php");
         }
     } else if (isset($_POST['cancel_update_user'])) {
         header("location: ./users.php");

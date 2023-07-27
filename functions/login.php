@@ -7,7 +7,6 @@ function user_login()
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        
         $query = "SELECT user_randSalt FROM users";
         $select_randSalt_query = mysqli_query($connection, $query);
 

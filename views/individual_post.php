@@ -27,7 +27,7 @@ if ($count == 0) {
             <?php echo $post_title; ?>
         </h2>
         <p class="lead">
-            by <a href="index.php"><?php echo $post_author; ?></a>
+            by <a href='index.php?author=<?php echo $post_author; ?>'><?php echo $post_author; ?></a>
         </p>
         <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
         <hr>
@@ -40,7 +40,8 @@ if ($count == 0) {
     <?php
     }
     ?>
-    
 <?php
+    $query = "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id={$post_id}";
+    $update_post_views = mysqli_query($connection, $query);
 }
 ?>

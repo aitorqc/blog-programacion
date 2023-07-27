@@ -15,9 +15,10 @@ if (isset($_POST['create_comment'])) {
             die("QUERY FAILED" . mysqli_error($connection));
         }
 
-        $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 
-    WHERE post_id = $comment_post_id";
+        $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $comment_post_id";
         $update_comment_count = mysqli_query($connection, $query);
+
+        header("Location: ./index.php?p_id=$comment_post_id");
     }
 }
 ?>
@@ -29,8 +30,8 @@ if (isset($_SESSION['user_role'])) {
     <div class='well'>
         <h4>Leave a Comment:</h4>
         <div class='row'>
-            <div class='col-xs-6'>".$_SESSION['username']."</div> 
-            <div class='col-xs-6 text-right'>".$_SESSION['email']."</div>
+            <div class='col-xs-6'>" . $_SESSION['username'] . "</div> 
+            <div class='col-xs-6 text-right'>" . $_SESSION['email'] . "</div>
         </div>
         <form action='' method='post' role='form'>
             <div class='form-group' style='margin-top: 1rem;'>

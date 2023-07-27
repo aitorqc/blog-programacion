@@ -70,6 +70,6 @@ $error = add_user();
     } ?>
 
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" name="create_user" value="Publish Post">
+        <input class="btn btn-primary" type="submit" name="create_user" value="Create User">
     </div>
 </form>

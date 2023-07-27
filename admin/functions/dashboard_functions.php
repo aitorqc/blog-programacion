@@ -48,7 +48,8 @@ function num_of_users()
     }
 }
 
-function num_of_comments(){
+function num_of_comments()
+{
     global $connection;
 
     $query = "SELECT COUNT(*) AS total_comments FROM comments WHERE comment_approve='1'";
@@ -57,6 +58,36 @@ function num_of_comments(){
         $row = mysqli_fetch_assoc($select_query);
         $total_comments = $row["total_comments"];
         return $total_comments;
+    } else {
+        return -1;
+    }
+}
+
+function num_of_views()
+{
+    global $connection;
+
+    $query = "SELECT SUM(post_views_count) AS total_views FROM posts";
+    $select_query = mysqli_query($connection, $query);
+    if ($select_query) {
+        $row = mysqli_fetch_assoc($select_query);
+        $total_views = $row["total_views"];
+        return $total_views;
+    } else {
+        return -1;
+    }
+}
+
+function most_viewed()
+{
+    global $connection;
+
+    $query = "SELECT post_title FROM posts WHERE post_views_count = (SELECT MAX(post_views_count) FROM posts)";
+    $select_query = mysqli_query($connection, $query);
+    if ($select_query) {
+        $row = mysqli_fetch_assoc($select_query);
+        $most_viewed = $row["post_title"];
+        return $most_viewed;
     } else {
         return -1;
     }

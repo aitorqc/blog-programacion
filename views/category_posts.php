@@ -1,7 +1,7 @@
 <?php
-$search_term = $_REQUEST['search_term'];
+$category_id = $_REQUEST['category'];
 
-$query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_term%'";
+$query = "SELECT * FROM posts WHERE post_category_id LIKE '%$category_id%'";
 $search_query = mysqli_query($connection, $query);
 
 if (!$search_query) {
@@ -21,7 +21,7 @@ if ($count == 0) {
         $post_date = $row['post_date'];
         $post_image = $row['post_image'];
         $post_tags = $row['post_tags'];
-        $post_content = (substr($row['post_content'], 0, 300) . ' [ ... ]');
+        $post_content = $row['post_content'];
 
         $post_status = $row['post_status'];
 
@@ -32,7 +32,7 @@ if ($count == 0) {
                 <a href='index.php?p_id=<?php echo $post_id; ?>'><?php echo $post_title; ?></a>
             </h2>
             <p class='lead'>
-                by <a href='index.php'><?php echo $post_author; ?></a>
+                by <a href='index.php?author=<?php echo $post_author; ?>'><?php echo $post_author; ?></a>
             </p>
             <p><span class='glyphicon glyphicon-time'></span> Posted on <?php echo $post_date; ?></p>
             <hr>

@@ -122,14 +122,15 @@
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                     ['Data', 'Count', 'Eliminated'],
-                    
+
                     <?php
                     $post_count = num_of_posts();
                     $category_count = num_of_categories();
                     $user_count = num_of_users();
                     $count_comments = num_of_comments();
+                    $total_views = num_of_views();
 
-                    $element_text = ['Posts' => $post_count, 'Categories' => $category_count, 'Users' => $user_count, 'Comments' => $count_comments];
+                    $element_text = ['Posts' => $post_count, 'Categories' => $category_count, 'Users' => $user_count, 'Comments' => $count_comments, 'Views' => $total_views];
 
                     foreach ($element_text as $key => $value) {
                         echo "['{$key}'" . "," . "{$value}," . (($key == 'Users') ? 1 : 0) . "],";

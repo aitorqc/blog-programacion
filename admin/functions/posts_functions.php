@@ -18,25 +18,28 @@ function show_posts()
         $post_tags = $row['post_tags'];
         $post_comments = $row['post_comment_count'];
         $post_date = $row['post_date'];
+        $post_views = $row['post_views_count'];
 
-        echo "<tr>
-        <th><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='$post_id'></th>
-        <td>{$post_id}</td>
-        <td>{$post_author}</td>
-        <td><a href='../index.php?p_id=$post_id'>$post_title</a></td>
-        <td>{$post_category_id}</td>
-        <td>{$post_status}</td>
-        <td>{$post_image}</td>
-        <td>{$post_tags}</td>
-        <td>{$post_comments}</td>
-        <td>{$post_date}</td>
-        <td>
-        <form action='./posts.php' method='post'>
-            <input type='hidden' name='delete' value='{$post_id}'>
-            <input type='submit' value='Delete'>
-        </form>
-        </td>
-        <td><a href='posts.php?source=edit_post&p_id=$post_id'>Edit</a></td>
+        echo
+        "<tr>
+            <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='$post_id'></td>
+            <td>{$post_id}</td>
+            <td>{$post_author}</td>
+            <td><a href='../index.php?p_id=$post_id'>{$post_title}</a></td>
+            <td>{$post_category_id}</td>
+            <td>{$post_status}</td>
+            <td>{$post_image}</td>
+            <td>{$post_tags}</td>
+            <td>{$post_comments}</td>
+            <td>{$post_views}</td>
+            <td>{$post_date}</td>
+            <td>
+                <form action='' method='post'>
+                    <input type='hidden' name='delete_post' value='{$post_id}'>
+                    <input type='submit' value='Delete'>
+                </form>
+            </td>
+            <td><a href='posts.php?source=edit_post&p_id=$post_id'>Edit</a></td>
         </tr>";
     }
 }
@@ -49,7 +52,7 @@ function add_post()
     if (isset($_POST['create_post'])) {
 
         $post_title        = $_POST['post_title'];
-        $post_author       = $_POST['post_author'];
+        $post_author       = $_SESSION['username'];
         $post_category_id  = $_POST['post_category'];
         $post_status       = $_POST['post_status'];
         $post_image        = $_FILES['image']['name'];
@@ -83,7 +86,7 @@ function update_post($the_post_id)
 
     if (isset($_POST['update_post'])) {
         $post_title        = $_POST['post_title'];
-        $post_author       = $_POST['post_author'];
+        $post_author       = $_SESSION['username'];
         $post_category_id  = $_POST['post_category'];
         $post_status       = $_POST['post_status'];
         $post_image        = $_FILES['image']['name'];
@@ -141,8 +144,8 @@ function pre_delete_post()
 {
     global $connection;
 
-    if (isset($_POST['delete'])) {
-        $post_id = $_REQUEST['delete'];
+    if (isset($_REQUEST['delete_post'])) {
+        $post_id = $_REQUEST['delete_post'];
 
         $query = "SELECT * FROM posts WHERE post_id='$post_id'";
         $select_post = mysqli_query($connection, $query);

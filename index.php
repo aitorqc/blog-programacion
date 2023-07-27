@@ -19,15 +19,17 @@
             <!-- Blog Posts -->
             <?php
             if (isset($_GET['search_term'])) {
-                include './includes/tags_posts.php';
+                include './views/tags_posts.php';
             } else if (isset($_GET['category'])) {
-                include './includes/category_posts.php';
+                include './views/category_posts.php';
             } else if (isset($_GET['p_id'])) {
-                include './includes/individual_post.php';
+                include './views/individual_post.php';
                 include './includes/comments.php';
                 include './includes/sidebar.php';
+            }else if (isset($_GET['author'])) {
+                include './views/author_posts.php';
             } else {
-                include './includes/all_posts.php';
+                include './views/all_posts.php';
             }
             ?>
 

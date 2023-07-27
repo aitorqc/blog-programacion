@@ -1,5 +1,6 @@
+<?php include './functions/resume_content_post.php'; ?>
 <?php
-$query = 'SELECT * FROM posts';
+$query = 'SELECT * FROM posts LIMIT 3';
 $select_all_posts_query = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
@@ -10,7 +11,7 @@ while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
     $post_image = $row['post_image'];
     $post_tags = $row['post_tags'];
     // $post_content = (substr($row['post_content'], 0, 300) . ' [ ... ]');
-    $post_content = $row['post_content'];
+    $post_content = first_paragraph($row['post_content']);
 
     $post_status = $row['post_status'];
 
@@ -21,13 +22,13 @@ while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
             <a href='index.php?p_id=<?php echo $post_id; ?>'><?php echo $post_title; ?></a>
         </h2>
         <p class='lead'>
-            by <a href='index.php'><?php echo $post_author; ?></a>
+            by <a href='index.php?author=<?php echo $post_author; ?>'><?php echo $post_author; ?></a>
         </p>
         <p><span class='glyphicon glyphicon-time'></span> Posted on <?php echo $post_date; ?></p>
         <hr>
         <img class='img-responsive' src="images/<?php echo $post_image; ?>" alt='$post_image'>
         <hr>
-        <p><?php echo $post_content; ?></p>
+        <p><?php echo $post_content . "[ ... ]"; ?></p>
         <div class='btn-group' role='group' aria-label='Botones'>
             <a class='btn btn-primary' href='index.php?p_id=<?php echo $post_id; ?>'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
             <?php

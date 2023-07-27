@@ -25,9 +25,14 @@ function show_comments()
 
         $query = "SELECT * from posts WHERE post_id='$comment_post_id'";
         $select_post_query = mysqli_query($connection, $query);
-        while ($row = mysqli_fetch_assoc($select_post_query)) {
-            $post_title = $row['post_title'];
-            echo "<td><a href='../index.php?p_id=$comment_post_id'>$post_title</a></td>";
+
+        if (mysqli_num_rows($select_post_query) > 0) {
+            while ($row = mysqli_fetch_assoc($select_post_query)) {
+                $post_title = $row['post_title'];
+                echo "<td><a href='../index.php?p_id=$comment_post_id'>$post_title</a></td>";
+            }
+        } else {
+            echo "<td>[Post Eliminated]</td>";
         }
 
         echo "<td>" . (($comment_approve) ? "True" : "False") . "</td>";

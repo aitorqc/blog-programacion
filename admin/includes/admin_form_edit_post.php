@@ -47,28 +47,8 @@ update_post($the_post_id);
     </div>
 
     <div class="form-group">
-        <label for="author">Author</label>
-        <select name="post_author" id="">
-            <?php
-            $query = "SELECT * FROM posts";
-            $select_posts = mysqli_query($connection, $query);
-
-            while ($row = mysqli_fetch_assoc($select_posts)) {
-                $post_id = $row['post_id'];
-                $post_author = $row['post_author'];
-
-                if ($post_id == $post_category_id) {
-                    echo "<option selected value='{$post_author}'>{$post_author}</option>";
-                } else {
-                    echo "<option value='{$post_author}'>{$post_author}</option>";
-                }
-            }
-            ?>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <select name="post_status" id="">
+        <label for="status">Status</label>
+        <select name="post_status" id="status">
             <option value='<?php echo $post_status ?>'><?php echo $post_status; ?></option>
             <?php
             if ($post_status == 'published') {
@@ -97,7 +77,7 @@ update_post($the_post_id);
     </div>
 
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" name="update_post" value="Publish Post">
+        <input class="btn btn-primary" type="submit" name="update_post" value="Update Post">
         <input class="btn btn-danger" type="submit" name="cancel_update_post" value="Cancel">
     </div>
 </form>

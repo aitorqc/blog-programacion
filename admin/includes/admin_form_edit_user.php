@@ -106,7 +106,7 @@ $error = update_user($the_user_id);
     } ?>
 
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" name="update_user" value="Create User">
+        <input class="btn btn-primary" type="submit" name="update_user" value="Update User">
         <input class="btn btn-danger" type="submit" name="cancel_update_user" value="Cancel">
     </div>
 </form>

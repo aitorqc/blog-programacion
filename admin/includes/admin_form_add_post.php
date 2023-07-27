@@ -26,14 +26,8 @@ add_post();
     </div>
 
     <div class="form-group">
-        <label for="author">Author</label>
-        <select name="post_author" id="">
-            <option value="admin">Admin</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <select name="post_status" id="">
+    <label for="status">Status</label>
+        <select name="post_status" id="status">
             <option value="draft">Post Status</option>
             <option value="published">Published</option>
             <option value="draft">Draft</option>
