@@ -1,18 +1,19 @@
 <?php
 $search_term = $_REQUEST['search_term'];
+$count_posts = count_posts_by_tag($search_term);
 
-$query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_term%'";
-$search_query = mysqli_query($connection, $query);
+if ($count_posts) {
+    $records_per_page = 4;
+    $pages = ceil($count_posts / $records_per_page);
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $start = ($current_page - 1) * $records_per_page;
 
-if (!$search_query) {
-    die("QUERY FAILED" . mysqli_error($connection));
-}
+    $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_term%' LIMIT $start, $records_per_page";
+    $search_query = mysqli_query($connection, $query);
 
-$count = mysqli_num_rows($search_query);
-
-if ($count == 0) {
-    echo "<h1> No Result </h1>";
-} else {
+    if (!$search_query) {
+        die("QUERY FAILED" . mysqli_error($connection));
+    }
 
     while ($row = mysqli_fetch_assoc($search_query)) {
         $post_id = $row['post_id'];
@@ -21,7 +22,7 @@ if ($count == 0) {
         $post_date = $row['post_date'];
         $post_image = $row['post_image'];
         $post_tags = $row['post_tags'];
-        $post_content = $row['post_content'];
+        $post_content = first_paragraph($row['post_content']);
 
         $post_status = $row['post_status'];
 
@@ -38,7 +39,7 @@ if ($count == 0) {
             <hr>
             <img class='img-responsive' src="images/<?php echo $post_image; ?>" alt='$post_image'>
             <hr>
-            <p><?php echo $post_content; ?></p>
+            <p><?php echo $post_content . " [ ... ]"; ?></p>
             <div class='btn-group' role='group' aria-label='Botones'>
                 <a class='btn btn-primary' href='index.php?p_id=<?php echo $post_id; ?>'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
                 <?php
@@ -52,6 +53,10 @@ if ($count == 0) {
 <?php
         }
     }
+    mysqli_free_result($search_query);
+    include './includes/pager.php';
+} else {
+    echo "<h1> No Result </h1>";
 }
 ?>
 <style>

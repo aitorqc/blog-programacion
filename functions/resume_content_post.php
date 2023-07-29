@@ -1,22 +1,33 @@
 <?php
 function first_paragraph($post_content)
 {
-    // Convertir la cadena de texto a un objeto DOMDocument
-    $dom = new DOMDocument('1.0', 'UTF-8');
-$dom->loadHTML('<?xml encoding="UTF-8">' . $post_content);
+    // Convertir caracteres especiales en entidades HTML
+    $post_content = htmlspecialchars($post_content, ENT_QUOTES, 'UTF-8');
 
-    // Obtener todos los elementos <p> (párrafos)
+    // Crear un nuevo DOMDocument
+    $dom = new DOMDocument('1.0', 'UTF-8');
+    $dom->loadHTML('<?xml encoding="UTF-8">' . $post_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+    // Obtener todos los párrafos
     $paragraphs = $dom->getElementsByTagName('p');
 
-    // Verificar si hay al menos un párrafo
     if ($paragraphs->length > 0) {
-        // Obtener el primer párrafo
-        $primerParrafo = $paragraphs->item(0)->nodeValue;
+        // Concatenar el contenido de los párrafos en un solo texto
+        $content = '';
+        foreach ($paragraphs as $paragraph) {
+            $content .= $paragraph->nodeValue . ' ';
+        }
 
-        // Imprimir el contenido del primer párrafo
+        // Eliminar los estilos restantes y obtener las primeras 50 palabras
+        $cleaned_content = strip_tags($content);
+        $words = preg_split('/\s+/u', $cleaned_content, -1, PREG_SPLIT_NO_EMPTY);
+        $primeras_50_palabras = array_slice($words, 0, 50);
+        
+        // Unir las palabras en un solo texto
+        $primerParrafo = implode(' ', $primeras_50_palabras);
+
         return $primerParrafo;
     } else {
-        // Si no hay párrafos en la cadena de texto
-        echo "No se encontraron párrafos.";
+        return "No se encontraron párrafos.";
     }
 }

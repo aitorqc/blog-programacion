@@ -1,6 +1,5 @@
 <?php include './includes/db.php'; ?>
 <?php include './includes/header.php'; ?>
-
 <!-- Navigation -->
 <?php include './includes/navigation.php'; ?>
 
@@ -17,6 +16,8 @@
             </h1>
 
             <!-- Blog Posts -->
+            <?php include './functions/resume_content_post.php'; ?>
+            <?php include './functions/count_posts.php'; ?>
             <?php
             if (isset($_GET['search_term'])) {
                 include './views/tags_posts.php';
@@ -26,14 +27,13 @@
                 include './views/individual_post.php';
                 include './includes/comments.php';
                 include './includes/sidebar.php';
-            }else if (isset($_GET['author'])) {
+            } else if (isset($_GET['author'])) {
                 include './views/author_posts.php';
             } else {
                 include './views/all_posts.php';
             }
             ?>
 
-            <?php (isset($_GET['p_id'])) ? "" : include './includes/pager.php'; ?>
         </div>
 
         <?php (isset($_GET['p_id'])) ? "" : include './includes/sidebar.php'; ?>
