@@ -21,7 +21,6 @@
             </div>
 
             <?php include './includes/dashboard.php'; ?>
-
         </div>
 
     </div>

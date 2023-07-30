@@ -32,22 +32,6 @@ function num_of_categories()
     }
 }
 
-// Count Users
-function num_of_users()
-{
-    global $connection;
-
-    $query = "SELECT COUNT(*) AS total_users FROM users";
-    $select_query = mysqli_query($connection, $query);
-    if ($select_query) {
-        $row = mysqli_fetch_assoc($select_query);
-        $total_users = $row["total_users"];
-        return $total_users;
-    } else {
-        return -1;
-    }
-}
-
 function num_of_comments()
 {
     global $connection;
@@ -88,6 +72,36 @@ function most_viewed()
         $row = mysqli_fetch_assoc($select_query);
         $most_viewed = $row["post_title"];
         return $most_viewed;
+    } else {
+        return -1;
+    }
+}
+
+
+// Count Users
+function num_of_users()
+{
+    global $connection;
+
+    $query = "SELECT COUNT(*) AS total_users FROM users";
+    $select_query = mysqli_query($connection, $query);
+    if ($select_query) {
+        $row = mysqli_fetch_assoc($select_query);
+        $total_users = $row["total_users"];
+        return $total_users;
+    } else {
+        return -1;
+    }
+}
+
+function check_users_online()
+{
+    global $connection;
+
+    $users_online_query = mysqli_query($connection, "SELECT * FROM users_online");
+    if ($users_online_query) {
+        $count_user = mysqli_num_rows($users_online_query);
+        return $count_user;
     } else {
         return -1;
     }

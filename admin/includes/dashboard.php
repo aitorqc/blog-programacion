@@ -111,43 +111,74 @@
         </div>
     </div>
 
-    <div class="row">
-        <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-        <script type="text/javascript">
-            google.charts.load('current', {
-                'packages': ['bar']
-            });
-            google.charts.setOnLoadCallback(drawChart);
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                <div id="columnchart_material" style="width: auto; height: 500px;"></div>
+                <script type="text/javascript">
+                    google.charts.load('current', {
+                        'packages': ['bar']
+                    });
+                    google.charts.setOnLoadCallback(drawChart);
 
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                    ['Data', 'Count', 'Eliminated'],
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                            ['Data', 'Count'],
 
-                    <?php
-                    $post_count = num_of_posts();
-                    $category_count = num_of_categories();
-                    $user_count = num_of_users();
-                    $count_comments = num_of_comments();
-                    $total_views = num_of_views();
+                            <?php
+                            $post_count = num_of_posts();
+                            $category_count = num_of_categories();
+                            $count_comments = num_of_comments();
+                            $total_views = num_of_views();
 
-                    $element_text = ['Posts' => $post_count, 'Categories' => $category_count, 'Users' => $user_count, 'Comments' => $count_comments, 'Views' => $total_views];
+                            $element_text = ['Posts' => $post_count, 'Categories' => $category_count, 'Comments' => $count_comments, 'Views' => $total_views];
 
-                    foreach ($element_text as $key => $value) {
-                        echo "['{$key}'" . "," . "{$value}," . (($key == 'Users') ? 1 : 0) . "],";
+                            foreach ($element_text as $key => $value) {
+                                echo "['{$key}'" . "," . "{$value}," . "],";
+                            }
+                            ?>
+                        ]);
+
+                        var options = {
+                            chart: {
+                                title: 'Blog Statics',
+                            }
+                        };
+
+                        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                        chart.draw(data, google.charts.Bar.convertOptions(options));
                     }
-                    ?>
-                ]);
+                </script>
+            </div>
+            <div class="col-xs-6">
+                <div id="piechart" style="width: auto; height: 500px;"></div>
+                <script type="text/javascript">
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(drawChart);
 
-                var options = {
-                    chart: {
-                        title: 'Blog Statics',
+                    function drawChart() {
+                        let users_online = <?php echo check_users_online(); ?>;
+                        let users = <?php echo num_of_users(); ?>;
+
+                        var data = google.visualization.arrayToDataTable([
+                            ['Users', 'Total'],
+                            ['Online', users_online],
+                            ['Total', users]
+                        ]);
+
+                        var options = {
+                            title: 'Users'
+                        };
+
+                        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                        chart.draw(data, options);
                     }
-                };
-
-                var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-                chart.draw(data, google.charts.Bar.convertOptions(options));
-            }
-        </script>
+                </script>
+            </div>
+        </div>
     </div>
 </div>
