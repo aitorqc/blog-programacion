@@ -30,7 +30,7 @@ function show_posts()
             <td>{$post_status}</td>
             <td>{$post_image}</td>
             <td>{$post_tags}</td>
-            <td>{$post_comments}</td>
+            <td><a href='post_comments.php?p_id=$post_id'>{$post_comments}</a></td>
             <td>{$post_views}</td>
             <td>{$post_date}</td>
             <td>

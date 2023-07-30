@@ -1,4 +1,4 @@
-var inactivityTimeout = 50000;
+var inactivityTimeout = 900000;
 var logoutTimer;
 
 function resetLogoutTimer() {
