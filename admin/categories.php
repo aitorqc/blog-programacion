@@ -30,6 +30,11 @@ $update_error = false;
                         <?php
                         // Add Categorie
                         $add_error = add_categorie();
+                        // Delete or Update Categories
+                        pre_delete_categorie();
+                        delete_categorie();
+                        $cat_title_edit = pre_update_categorie();
+                        $update_error = update_categorie();
                         ?>
                         <form action="" method="post">
                             <div class="form-group">
@@ -47,13 +52,6 @@ $update_error = false;
                             } ?>
                         </form>
 
-                        <?php
-                        // Delete or Update Categories
-                        pre_delete_categorie();
-                        delete_categorie();
-                        $cat_title_edit = pre_update_categorie();
-                        $update_error = update_categorie();
-                        ?>
                         <?php include './includes/admin_form_edit_categorie.php'; ?>
                     </div>
 

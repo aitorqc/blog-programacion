@@ -33,7 +33,7 @@ function show_post_comments()
                     </form>
                 </td>
                 <td><a href='comments.php?source=edit_comment&c_id=$comment_id'>Edit</a></td>
-                <td><a href='comments.php?approve_comment&c_id=$comment_id'>Approve</a></td>
+                <td><a href='comments.php?approve_comment&post_comments=$post_id&c_id=$comment_id'>Approve</a></td>
             </tr>";
         }
     }

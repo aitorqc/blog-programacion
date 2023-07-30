@@ -53,6 +53,11 @@
     </div>
 
     <!-- Side Widget Well -->
-    <?php include 'widget.php'; ?>
+    <?php
+    $error = user_login();
+    if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === "user") {
+        include 'widget.php';
+    }
+    ?>
 
 </div>

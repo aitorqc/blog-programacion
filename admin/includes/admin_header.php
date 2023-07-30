@@ -9,8 +9,6 @@ if (isset($_SESSION['user_role'])) {
         header("Location: ../index.php");
         exit();
     } else {
-        // header("Location: ./index.php");
-        // exit();
     }
 } else {
     header("Location: ../index.php");

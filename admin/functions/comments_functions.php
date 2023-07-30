@@ -98,7 +98,12 @@ function approve_comment()
 
         $update_comment_query = mysqli_query($connection, $query);
 
-        header("location: comments.php");
+        if (isset($_GET['post_comments'])) {
+            $post_id = $_GET['post_comments'];
+            header("location: post_comments.php?p_id=$post_id");
+        } else {
+            header("location: comments.php");
+        }
     }
 }
 
