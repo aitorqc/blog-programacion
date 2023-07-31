@@ -22,8 +22,15 @@
                     $cat_id = $row['cat_id'];
                     $cat_title = $row['cat_title'];
 
+                    $category_class = '';
+                    $pageName = basename($_SERVER['PHP_SELF']);
+
+                    if(isset($_GET['category']) && $_GET['category'] == $cat_id){
+                        $category_class = 'active';
+                    }
+
                     echo "
-                        <li>
+                        <li class='$category_class'>
                             <a href='./index.php?category=$cat_id'>
                                 {$cat_title}
                             </a>

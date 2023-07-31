@@ -8,7 +8,7 @@ if ($count_posts) {
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
     $start = ($current_page - 1) * $records_per_page;
 
-    $query = "SELECT * FROM posts WHERE post_category_id LIKE '%$category_id%' LIMIT $start, $records_per_page";
+    $query = "SELECT * FROM posts WHERE post_category_id LIKE '%$category_id%' AND post_status='published' LIMIT $start, $records_per_page";
     $search_query = mysqli_query($connection, $query);
 
     if (!$search_query) {

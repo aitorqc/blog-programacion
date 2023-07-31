@@ -29,10 +29,10 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li>
+            <li id="index">
                 <a href="./"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
-            <li>
+            <li id="posts">
                 <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><span class="glyphicon glyphicon-list-alt"></span> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="posts_dropdown" class="collapse">
                     <li>
@@ -43,13 +43,13 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li id="categories">
                 <a href="./categories.php"><i class="fa fa-fw fa-file"></i> Categories</a>
             </li>
-            <li>
+            <li id="comments">
                 <a href="./comments.php"><span class="glyphicon glyphicon-comment"></span> Comments</a>
             </li>
-            <li>
+            <li id="users">
                 <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><span class="glyphicon glyphicon-user"></span> Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="users_dropdown" class="collapse">
                     <li>
@@ -67,4 +67,20 @@
         </ul>
     </div>
     <!-- /.navbar-collapse -->
+    <script>
+        // Función para agregar la clase "active" al enlace correspondiente
+        function setActiveLink() {
+            const currentPageId = "<?php echo pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME); ?>";
+            const menuItem = document.getElementById(currentPageId);
+
+            console.log(currentPageId);
+
+            if (menuItem) {
+                menuItem.classList.add('active');
+            }
+        }
+
+        // Llamar a la función para establecer el enlace activo en la carga de la página
+        setActiveLink();
+    </script>
 </nav>

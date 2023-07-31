@@ -1,12 +1,13 @@
 <?php
 $count_posts = count_posts();
+
 if ($count_posts) {
     $records_per_page = 4;
     $pages = ceil($count_posts / $records_per_page);
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
     $start = ($current_page - 1) * $records_per_page;
 
-    $query = "SELECT * FROM posts LIMIT $start, $records_per_page";
+    $query = "SELECT * FROM posts WHERE post_status='published' LIMIT $start, $records_per_page";
     $select_all_posts_query = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
