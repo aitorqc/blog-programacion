@@ -1,7 +1,7 @@
 var inactivityTimeout = 900000;
 var logoutTimer;
 
-function resetLogoutTimer() {
+function resetLogoutTimer(ev) {
     clearTimeout(logoutTimer);
     logoutTimer = setTimeout(logoutInactiveUser, inactivityTimeout);
 }

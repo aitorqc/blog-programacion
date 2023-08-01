@@ -25,10 +25,10 @@ if ($count_posts) {
         } else {
 ?>
             <h2>
-                <a href='index.php?p_id=<?php echo $post_id; ?>'><?php echo $post_title; ?></a>
+                <a href='/cms/post/<?php echo $post_id; ?>'><?php echo $post_title; ?></a>
             </h2>
             <p class='lead'>
-                creador <a href='index.php?author=<?php echo $post_author; ?>'><?php echo $post_author; ?></a>
+                creador <a href='/cms/author/<?php echo $post_author; ?>'><?php echo $post_author; ?></a>
             </p>
             <p><span class='glyphicon glyphicon-time'></span> Con Fecha: <?php echo $post_date; ?></p>
             <hr>
@@ -36,7 +36,7 @@ if ($count_posts) {
             <hr>
             <p><?php echo $post_content . " [ ... ]"; ?></p>
             <div class='btn-group' role='group' aria-label='Botones'>
-                <a class='btn btn-primary' href='index.php?p_id=<?php echo $post_id; ?>'>Leer Más <span class='glyphicon glyphicon-chevron-right'></span></a>
+                <a class='btn btn-primary' href='/cms/post/<?php echo $post_id; ?>'>Leer Más <span class='glyphicon glyphicon-chevron-right'></span></a>
                 <?php
                 if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
                     echo "<a class='btn btn-primary' href='admin/posts.php?source=edit_post&p_id=$post_id'>Editar <span class='glyphicon glyphicon-cog'></span></a>";

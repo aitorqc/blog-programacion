@@ -36,7 +36,7 @@ function user_login()
             $time = date('Y-m-d H:i:s');
             insert_user_online($session, $time);
 
-            header("Location: ./admin/index.php");
+            header("Location: ../admin/index.php");
             ob_end_flush(); // Enviar los datos almacenados en búfer después de la cabecera de redirección
             exit();
         } else {

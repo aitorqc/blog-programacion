@@ -12,14 +12,14 @@
  <?php session_write_close(); ?>
 
  <!-- jQuery -->
- <script src="js/jquery.js"></script>
+ <script src="/cms/js/jquery.js"></script>
 
  <!-- Bootstrap Core JavaScript -->
- <script src="js/bootstrap.min.js"></script>
- <script src="js/update_user_activity.js"></script>
+ <script src="/cms/js/bootstrap.min.js"></script>
+ <script src="/cms/js/update_user_activity.js"></script>
  <?php
     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'user') {
-        echo '<script src="js/inactivity_logout.js"></script>';
+        echo '<script src="/cms/js/inactivity_logout.js"></script>';
     }
     ?>
 

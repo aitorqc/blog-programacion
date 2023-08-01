@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="./">CMS</a>
+            <a class="navbar-brand" href="/cms/">CMS</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -25,13 +25,13 @@
                     $category_class = '';
                     $pageName = basename($_SERVER['PHP_SELF']);
 
-                    if(isset($_GET['category']) && $_GET['category'] == $cat_id){
+                    if (isset($_GET['category']) && $_GET['category'] == $cat_id) {
                         $category_class = 'active';
                     }
 
                     echo "
                         <li class='$category_class'>
-                            <a href='./index.php?category=$cat_id'>
+                            <a href='/cms/category/$cat_id'>
                                 {$cat_title}
                             </a>
                         </li>";
@@ -56,7 +56,7 @@
                                     <a href='#'><i class='fa fa-fw fa-user'></i> Perfil</a>
                                 </li>
                                 <li>
-                                    <a href='./functions/logout.php'><i class='fa fa-fw fa-power-off'></i> Salir</a>
+                                    <a href='/cms/functions/logout.php'><i class='fa fa-fw fa-power-off'></i> Salir</a>
                                 </li>
                             </ul>
                         </li>
@@ -66,7 +66,7 @@
             } else {
                 echo "
                 <p class='navbar-text navbar-right h4'>
-                    <a href='registration.php'>Registrarse</a>
+                    <a href='/cms/registration'>Registrarse</a>
                 </p>";
             }
             ?>

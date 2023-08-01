@@ -6,16 +6,30 @@
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Buscar por Tags</h4>
-        <form action="index.php" method="get">
-            <div class="input-group">
-                <input name="search_term" type="text" class="form-control" placeholder="Buscar...">
-                <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default" aria-label="Help">
-                        Buscar
-                    </button>
-                </div>
+        <form action="/cms/tag/" class="input-group">
+            <input name="search_term" type="text" class="form-control" placeholder="Buscar..." onkeypress="handleKeyPress(event)">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default" onclick="submitForm()">
+                    Buscar
+                </button>
             </div>
         </form>
+        <script>
+            function submitForm() {
+                var search_term = document.querySelector('input[name="search_term"]').value;
+                var url = "/cms/tag/" + encodeURIComponent(search_term);
+                window.location.href = url;
+            }
+
+            function handleKeyPress(event) {
+                if (event.keyCode === 13) {
+                    // Si la tecla presionada es "Enter" (código 13), prevenir la acción predeterminada del formulario
+                    event.preventDefault();
+                    // Llamar a la función submitForm() para redirigir manualmente
+                    submitForm();
+                }
+            }
+        </script>
     </div>
 
     <!-- Login -->
@@ -42,7 +56,7 @@
                         $cat_id = $row['cat_id'];
                         $cat_title = $row['cat_title'];
 
-                        echo "<li><a href='index.php?category=$cat_id'>{$cat_title}</a>";
+                        echo "<li><a href='/cms/category/$cat_id'>{$cat_title}</a>";
                     }
                     ?>
                 </ul>

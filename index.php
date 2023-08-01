@@ -17,6 +17,7 @@
             <!-- Blog Posts -->
             <?php include './functions/resume_content_post.php'; ?>
             <?php include './functions/count_posts.php'; ?>
+
             <?php
             if (isset($_GET['search_term'])) {
                 include './views/tags_posts.php';

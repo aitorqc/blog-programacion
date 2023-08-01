@@ -1,0 +1,8 @@
+RewriteEngine on
+
+RewriteRule ^(index|registration)$ $1.php [NC,L]
+
+RewriteRule ^category/(\d+)$ index.php?category=$1 [NC,L]
+RewriteRule ^tag/([^/]+)$ index.php?search_term=$1 [NC,L]
+RewriteRule ^post/(\d+)$ index.php?p_id=$1 [NC,L]
+RewriteRule ^author/([^/]+)$ index.php?author=$1 [NC,L]
