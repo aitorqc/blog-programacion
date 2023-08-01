@@ -43,13 +43,13 @@ if (isset($_POST['checkBoxArray'])) {
             <th><input id="selectAllBoxes" type="checkbox"></th>
             <th>Id</th>
             <th>Autor</th>
-            <th>Titulo</th>
+            <th>Título</th>
             <th>Categoría ID</th>
             <th>Estado</th>
             <th>Imagen</th>
             <th>Tags</th>
             <th>Comentarios</th>
-            <th>Vistas</th>
+            <th>Visitas</th>
             <th>Fecha</th>
             <th></th>
             <th></th>

@@ -21,7 +21,7 @@ update_post($the_post_id);
 
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="title">Titulo</label>
+        <label for="title">Título</label>
         <input type="text" class="form-control" name="post_title" value="<?php echo htmlspecialchars(stripslashes($post_title)); ?>">
     </div>
 

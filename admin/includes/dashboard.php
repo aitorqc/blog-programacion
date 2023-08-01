@@ -99,7 +99,7 @@
                     <div class="panel-footer announcement-bottom">
                         <div class="row">
                             <div class="col-xs-6">
-                                Expand
+                                Ver
                             </div>
                             <div class="col-xs-6 text-right">
                                 <i class="fa fa-arrow-circle-right"></i>
