@@ -2,11 +2,11 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Author</th>
-            <th>Content</th>
+            <th>Autor</th>
+            <th>Contenido</th>
             <th>Email</th>
-            <th>Approved</th>
-            <th>Date</th>
+            <th>Aprobado</th>
+            <th>Fecha</th>
             <th></th>
             <th></th>
             <th></th>

@@ -52,8 +52,8 @@
 
 <div class="popup-overlay" id="popupOverlay" style="display: none;"></div>
 <div class="popup" id="popup" style="display: none;">
-    <h2>Confirm deletion</h2>
-    <p>Are you sure you want to delete the <b><?php echo $_REQUEST['del_cat_title']; ?></b> category?</p>
+    <h2>Confirmar</h2>
+    <p>Estás seguro de querer eliminar la categoría <b><?php echo $_REQUEST['del_cat_title']; ?></b> ?</p>
     <form method="post">
         <button type="submit">Delete</button>
         <button type="button" onclick="hidePopup()">Cancel</button>

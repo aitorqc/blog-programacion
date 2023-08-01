@@ -21,43 +21,28 @@ $update_error = false;
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
+                    <!-- Page Heading -->
                     <h1 class="page-header">
-                        Welcome to Admin
-                        <small><?php echo $_SESSION['username']; ?></small>
+                        Categorías:
                     </h1>
+                </div>
 
-                    <div class="col-xs-6">
-                        <?php
-                        // Add Categorie
-                        $add_error = add_categorie();
-                        // Delete or Update Categories
-                        pre_delete_categorie();
-                        delete_categorie();
-                        $cat_title_edit = pre_update_categorie();
-                        $update_error = update_categorie();
-                        ?>
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <label for="cat_title">Add Category</label>
-                                <input class="form-control" type="text" name="cat_title">
-                            </div>
-                            <div class="form-group">
-                                <input class="btn btn-primary" type="submit" name="submit" value="Add Category">
-                            </div>
-                            <?php if ($add_error) {
-                                echo "
-                            <div class='alert alert-danger' role='alert'>
-                                {$add_error}
-                            </div>";
-                            } ?>
-                        </form>
+                <div class="col-lg-6">
+                    <?php
+                    // Add Categorie
+                    $add_error = add_categorie();
+                    // Delete or Update Categories
+                    pre_delete_categorie();
+                    delete_categorie();
+                    $cat_title_edit = pre_update_categorie();
+                    $update_error = update_categorie();
+                    ?>
+                    <?php include './includes/admin_form_add_categorie.php'; ?>
+                    <?php include './includes/admin_form_edit_categorie.php'; ?>
+                </div>
 
-                        <?php include './includes/admin_form_edit_categorie.php'; ?>
-                    </div>
-
-                    <div class="col-xs-6">
-                        <?php include './includes/admin_view_all_categories.php'; ?>
-                    </div>
+                <div class="col-lg-6">
+                    <?php include './includes/admin_view_all_categories.php'; ?>
                 </div>
             </div>
 

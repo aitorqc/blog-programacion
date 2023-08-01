@@ -17,7 +17,7 @@ $msg = contact();
         if ($msg === 'error') {
             echo "
             <div class='alert alert-danger' role='alert'>
-                Something gone wrong
+                Algo ha salido mal
             </div>";
         } else if($msg) {
             echo "

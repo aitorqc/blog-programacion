@@ -4,12 +4,12 @@ add_post();
 
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="title">Post Title</label>
+        <label for="title">Titulo</label>
         <input type="text" class="form-control" name="post_title">
     </div>
 
     <div class="form-group">
-        <label for="category">Category</label>
+        <label for="category">Categoría</label>
         <select name="post_category" id="">
             <?php
             $query = "SELECT * FROM categories";
@@ -26,30 +26,29 @@ add_post();
     </div>
 
     <div class="form-group">
-    <label for="status">Status</label>
+    <label for="status">Estado</label>
         <select name="post_status" id="status">
-            <option value="draft">Post Status</option>
-            <option value="published">Published</option>
-            <option value="draft">Draft</option>
+            <option value="draft" selected>Borrador</option>
+            <option value="published">Publicado</option>
         </select>
     </div>
 
     <div class="form-group">
-        <label for="post_image">Post Image</label>
+        <label for="post_image">Imagen</label>
         <input type="file" name="image">
     </div>
 
     <div class="form-group">
-        <label for="post_tags">Post Tags</label>
+        <label for="post_tags">Tags</label>
         <input type="text" class="form-control" name="post_tags">
     </div>
 
     <div class="form-group">
-        <label for="summernote">Post Content</label>
+        <label for="summernote">Contenido</label>
         <textarea class="form-control " name="post_content" id="summernote" cols="30" rows="10"></textarea>
     </div>
 
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" name="create_post" value="Publish Post">
+        <input class="btn btn-primary" type="submit" name="create_post" value="Crear">
     </div>
 </form>

@@ -21,9 +21,9 @@ update_comment($the_comment_id);
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Author</th>
+                <th scope="col">Autor</th>
                 <th scope="col">Email</th>
-                <th scope="col">Date</th>
+                <th scope="col">Fecha</th>
             </tr>
         </thead>
         <tbody>
@@ -37,14 +37,14 @@ update_comment($the_comment_id);
     </table>
 
     <div class="form-group">
-        <label for="post_content">Comment Content</label>
+        <label for="post_content">Contenido</label>
         <textarea class="form-control " name="comment_content" id="" cols="30" rows="10">
             <?php echo trim($comment_content); ?>  
          </textarea>
     </div>
 
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" name="update_comment" value="Publish Comment">
-        <input class="btn btn-danger" type="submit" name="cancel_update_comment" value="Cancel">
+        <input class="btn btn-primary" type="submit" name="update_comment" value="Publicar">
+        <input class="btn btn-danger" type="submit" name="cancel_update_comment" value="Cancelar">
     </div>
 </form>

@@ -32,7 +32,7 @@ function show_comments()
                 echo "<td><a href='../index.php?p_id=$comment_post_id'>$post_title</a></td>";
             }
         } else {
-            echo "<td>[Post Eliminated]</td>";
+            echo "<td>[Post Eliminado]</td>";
         }
 
         echo "<td>" . (($comment_approve) ? "True" : "False") . "</td>";
@@ -40,11 +40,11 @@ function show_comments()
             <td>
                 <form action='./comments.php' method='post'>
                     <input type='hidden' name='delete' value='{$comment_id}'>
-                    <input type='submit' value='Delete'>
+                    <input type='submit' value='Borrar'>
                 </form>
             </td>
-            <td><a href='comments.php?source=edit_comment&c_id=$comment_id'>Edit</a></td>
-            <td><a href='comments.php?approve_comment&c_id=$comment_id'>Approve</a></td>
+            <td><a href='comments.php?source=edit_comment&c_id=$comment_id'>Editar</a></td>
+            <td><a href='comments.php?approve_comment&c_id=$comment_id'>Aprobar</a></td>
         </tr>";
     }
 }

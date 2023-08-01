@@ -12,7 +12,7 @@ function contact()
 
             // Enviar el correo
             if (mail($to, $issue, $content, $headers)) {
-                return "Email has been sent";
+                return "El mensaje ha sido enviado";
             } else {
                 return "error";
             }

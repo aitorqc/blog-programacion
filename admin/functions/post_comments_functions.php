@@ -29,11 +29,11 @@ function show_post_comments()
                 <td>
                     <form action='./comments.php' method='post'>
                         <input type='hidden' name='delete' value='{$comment_id}'>
-                        <input type='submit' value='Delete'>
+                        <input type='submit' value='Eliminar'>
                     </form>
                 </td>
-                <td><a href='comments.php?source=edit_comment&c_id=$comment_id'>Edit</a></td>
-                <td><a href='comments.php?approve_comment&post_comments=$post_id&c_id=$comment_id'>Approve</a></td>
+                <td><a href='comments.php?source=edit_comment&c_id=$comment_id'>Editar</a></td>
+                <td><a href='comments.php?approve_comment&post_comments=$post_id&c_id=$comment_id'>Aprobar</a></td>
             </tr>";
         }
     }

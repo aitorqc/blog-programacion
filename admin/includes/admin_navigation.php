@@ -12,15 +12,15 @@
 
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
-        <li><a href="../index.php">HOME</a></li>
+        <li><a href="../index.php">BLOG</a></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username']; ?><b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                    <a href="#"><i class="fa fa-fw fa-user"></i> Perfil</a>
                 </li>
                 <li>
-                    <a href="../functions/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="../functions/logout.php"><i class="fa fa-fw fa-power-off"></i> Salir</a>
                 </li>
             </ul>
         </li>
@@ -36,33 +36,29 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><span class="glyphicon glyphicon-list-alt"></span> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="posts_dropdown" class="collapse">
                     <li>
-                        <a href="./posts.php">View Posts</a>
+                        <a href="./posts.php">Ver Posts</a>
                     </li>
                     <li>
-                        <a href="posts.php?source=add_post">Add Post</a>
+                        <a href="posts.php?source=add_post">Crear Post</a>
                     </li>
                 </ul>
             </li>
             <li id="categories">
-                <a href="./categories.php"><i class="fa fa-fw fa-file"></i> Categories</a>
+                <a href="./categories.php"><i class="fa fa-fw fa-file"></i> Categorías</a>
             </li>
             <li id="comments">
-                <a href="./comments.php"><span class="glyphicon glyphicon-comment"></span> Comments</a>
+                <a href="./comments.php"><span class="glyphicon glyphicon-comment"></span> Comentarios</a>
             </li>
             <li id="users">
-                <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><span class="glyphicon glyphicon-user"></span> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><span class="glyphicon glyphicon-user"></span> Usuarios <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="users_dropdown" class="collapse">
                     <li>
-                        <a href="./users.php">View Users</a>
+                        <a href="./users.php">Ver Usuarios</a>
                     </li>
                     <li>
-                        <a href="users.php?source=add_user">Add User</a>
+                        <a href="users.php?source=add_user">Crear Usuario</a>
                     </li>
                 </ul>
-            </li>
-
-            <li>
-                <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
             </li>
         </ul>
     </div>

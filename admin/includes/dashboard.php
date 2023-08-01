@@ -14,11 +14,11 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="./posts.php">
                     <div class="panel-footer announcement-bottom">
                         <div class="row">
                             <div class="col-xs-6">
-                                Expand
+                                Ver
                             </div>
                             <div class="col-xs-6 text-right">
                                 <i class="fa fa-arrow-circle-right"></i>
@@ -37,15 +37,15 @@
                         </div>
                         <div class="col-xs-6 text-right">
                             <p class="announcement-heading"><?php echo num_of_categories(); ?></p>
-                            <p class="announcement-text"> Categories</p>
+                            <p class="announcement-text"> Categorías</p>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="./categories.php">
                     <div class="panel-footer announcement-bottom">
                         <div class="row">
                             <div class="col-xs-6">
-                                Expand
+                                Ver
                             </div>
                             <div class="col-xs-6 text-right">
                                 <i class="fa fa-arrow-circle-right"></i>
@@ -64,15 +64,15 @@
                         </div>
                         <div class="col-xs-6 text-right">
                             <p class="announcement-heading"><?php echo num_of_users(); ?></p>
-                            <p class="announcement-text">Users</p>
+                            <p class="announcement-text">Usuarios</p>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="./users.php">
                     <div class="panel-footer announcement-bottom">
                         <div class="row">
                             <div class="col-xs-6">
-                                Expand
+                                Ver
                             </div>
                             <div class="col-xs-6 text-right">
                                 <i class="fa fa-arrow-circle-right"></i>
@@ -91,11 +91,11 @@
                         </div>
                         <div class="col-xs-6 text-right">
                             <p class="announcement-heading"><?php echo num_of_comments(); ?></p>
-                            <p class="announcement-text"> Comments</p>
+                            <p class="announcement-text"> Comentarios</p>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="./comments.php">
                     <div class="panel-footer announcement-bottom">
                         <div class="row">
                             <div class="col-xs-6">
@@ -123,7 +123,7 @@
 
                     function drawChart() {
                         var data = google.visualization.arrayToDataTable([
-                            ['Data', 'Count'],
+                            ['Datos', 'Cantidad'],
 
                             <?php
                             $post_count = num_of_posts();
@@ -131,7 +131,7 @@
                             $count_comments = num_of_comments();
                             $total_views = num_of_views();
 
-                            $element_text = ['Posts' => $post_count, 'Categories' => $category_count, 'Comments' => $count_comments, 'Views' => $total_views];
+                            $element_text = ['Posts' => $post_count, 'Categorías' => $category_count, 'Comentarios' => $count_comments, 'Visitas' => $total_views];
 
                             foreach ($element_text as $key => $value) {
                                 echo "['{$key}'" . "," . "{$value}," . "],";
@@ -164,13 +164,13 @@
                         let users = <?php echo num_of_users(); ?>;
 
                         var data = google.visualization.arrayToDataTable([
-                            ['Users', 'Total'],
+                            ['Usuarios', 'Total'],
                             ['Online', users_online],
                             ['Total', users]
                         ]);
 
                         var options = {
-                            title: 'Users'
+                            title: 'Usuarios'
                         };
 
                         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

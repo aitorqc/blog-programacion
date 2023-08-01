@@ -33,18 +33,18 @@ if ($count_posts) {
                 <a href='index.php?p_id=<?php echo $post_id; ?>'><?php echo $post_title; ?></a>
             </h2>
             <p class='lead'>
-                by <a href='index.php?author=<?php echo $post_author; ?>'><?php echo $post_author; ?></a>
+                Creador <a href='index.php?author=<?php echo $post_author; ?>'><?php echo $post_author; ?></a>
             </p>
-            <p><span class='glyphicon glyphicon-time'></span> Posted on <?php echo $post_date; ?></p>
+            <p><span class='glyphicon glyphicon-time'></span> Con Fecha: <?php echo $post_date; ?></p>
             <hr>
-            <img class='img-responsive' src="images/<?php echo $post_image; ?>" alt='$post_image'>
+            <img class='img-responsive' src="images/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>">
             <hr>
             <p><?php echo $post_content . " [ ... ]"; ?></p>
             <div class='btn-group' role='group' aria-label='Botones'>
-                <a class='btn btn-primary' href='index.php?p_id=<?php echo $post_id; ?>'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
+                <a class='btn btn-primary' href='index.php?p_id=<?php echo $post_id; ?>'>Leer Más <span class='glyphicon glyphicon-chevron-right'></span></a>
                 <?php
                 if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
-                    echo "<a class='btn btn-primary' href='admin/posts.php?source=edit_post&p_id=$post_id'>Edit <span class='glyphicon glyphicon-cog'></span></a>";
+                    echo "<a class='btn btn-primary' href='admin/posts.php?source=edit_post&p_id=$post_id'>Editar <span class='glyphicon glyphicon-cog'></span></a>";
                 } else {
                 }
                 ?>
@@ -56,7 +56,7 @@ if ($count_posts) {
     mysqli_free_result($search_query);
     include './includes/pager.php';
 } else {
-    echo "<h1> No Result </h1>";
+    echo "<h1> No se han encontrado resultados </h1>";
 }
 ?>
 <style>

@@ -34,10 +34,10 @@ function show_users()
         <td>
         <form action='./users.php' method='post'>
             <input type='hidden' name='delete' value='{$user_id}'>
-            <input type='submit' value='Delete'>
+            <input type='submit' value='Eliminar'>
         </form>
         </td>
-        <td>" . (($user_role === "admin") ? "<a href='users.php?source=edit_user&u_id=$user_id'>Edit</a>" : "No Editable") . "</td>
+        <td>" . (($user_role === "admin") ? "<a href='users.php?source=edit_user&u_id=$user_id'>Editar</a>" : "No Editable") . "</td>
         </tr>";
     }
 }

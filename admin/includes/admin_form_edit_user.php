@@ -12,6 +12,7 @@ if (isset($_GET['u_id'])) {
         $user_lastname = $row['user_lastname'];
         $user_email = $row['user_email'];
         $user_image = $row['user_image'];
+        $user_role = $row['user_role'];
     }
 }
 
@@ -20,12 +21,12 @@ $error = update_user($the_user_id);
 
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="username">User Name</label>
+        <label for="username">Nombre de Usuario</label>
         <input type="text" class="form-control" name="username" id="username" value="<?php echo htmlspecialchars(stripslashes($username)); ?>">
     </div>
 
     <div class="form-group">
-        <label for="user_password">User Password</label>
+        <label for="user_password">Contraseña</label>
         <div class="input-group">
             <input type="password" class="form-control" name="user_password" id="user_password" value="<?php echo htmlspecialchars(stripslashes($user_password)); ?>">
             <span class="input-group-addon" onclick="checkPassword()">
@@ -51,12 +52,12 @@ $error = update_user($the_user_id);
     </div>
 
     <div class="form-group">
-        <label for="user_firstname">FirstName</label>
+        <label for="user_firstname">Nombre</label>
         <input type="text" class="form-control" name="user_firstname" id="user_firstname" value="<?php echo htmlspecialchars(stripslashes($user_firstname)); ?>">
     </div>
 
     <div class="form-group">
-        <label for="user_lastname">LastName</label>
+        <label for="user_lastname">Apellidos</label>
         <input type="text" class="form-control" name="user_lastname" id="user_lastname" value="<?php echo htmlspecialchars(stripslashes($user_lastname)); ?>">
     </div>
 
@@ -66,35 +67,29 @@ $error = update_user($the_user_id);
     </div>
 
     <div class="form-group">
-        <label for="user_image">Post Image</label>
+        <label for="user_image">Avatar</label>
         <input type="file" name="user_image" id="user_image" value="<?php echo htmlspecialchars(stripslashes($user_image)); ?>">
     </div>
 
     <div class="form-group">
-        <label for="user_role">User Role</label>
+        <label for="user_role">Role</label>
         <select name="user_role" id="user_role">
-            <?php
-            $query = "SELECT * FROM users";
-            $select_users = mysqli_query($connection, $query);
-
-            // Array para rastrear los roles ya agregados
-            $added_roles = array();
-
-            while ($row = mysqli_fetch_assoc($select_users)) {
-                $user_id = $row['user_id'];
-                $user_role = htmlspecialchars($row['user_role']); // Sanitize the user role
-
-                if (!in_array($user_role, $added_roles)) {
-                    if ($user_id == $the_user_id) {
-                        echo "<option selected value='{$user_role}'>" . ucfirst($user_role) . "</option>";
-                    } else {
-                        echo "<option value='{$user_role}'>" . ucfirst($user_role) . "</option>";
-                    }
-                    // Agregar el rol al array de roles agregados
-                    $added_roles[] = $user_role;
+            <option value='<?php echo $user_role ?>' selected>
+                <?php
+                if ($user_role == 'user') {
+                    echo "Usuario";
+                } else {
+                    echo "Administrador";
                 }
-            }
-            ?>
+                ?>
+            </option>
+            <?php
+                if ($user_role == 'user') {
+                    echo "<option value='admin'>Administrador</option>";
+                } else {
+                    echo "<option value='user'>Usuario</option>";
+                }
+                ?>
         </select>
     </div>
 
@@ -106,7 +101,7 @@ $error = update_user($the_user_id);
     } ?>
 
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" name="update_user" value="Update User">
-        <input class="btn btn-danger" type="submit" name="cancel_update_user" value="Cancel">
+        <input class="btn btn-primary" type="submit" name="update_user" value="Actualizar">
+        <input class="btn btn-danger" type="submit" name="cancel_update_user" value="Cancelar">
     </div>
 </form>

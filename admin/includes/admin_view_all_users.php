@@ -2,14 +2,14 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Username</th>
-            <th>User Password</th>
-            <th>User FirstName</th>
-            <th>User LastName</th>
-            <th>User Email</th>
-            <th>User Avatar</th>
-            <th>User Role</th>
-            <th>User RandSalt</th>
+            <th>Nombre de Usuario</th>
+            <th>Contraseña</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Avatar</th>
+            <th>Role</th>
+            <th>RandSalt</th>
             <th></th>
             <th></th>
         </tr>

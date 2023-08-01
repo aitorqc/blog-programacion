@@ -36,10 +36,10 @@ function show_posts()
             <td>
                 <form action='' method='post'>
                     <input type='hidden' name='delete_post' value='{$post_id}'>
-                    <input type='submit' value='Delete'>
+                    <input type='submit' value='Eliminar'>
                 </form>
             </td>
-            <td><a href='posts.php?source=edit_post&p_id=$post_id'>Edit</a></td>
+            <td><a href='posts.php?source=edit_post&p_id=$post_id'>Editar</a></td>
         </tr>";
     }
 }

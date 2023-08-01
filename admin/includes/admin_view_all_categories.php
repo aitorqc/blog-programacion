@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Category Title</th>
+            <th>Categoría</th>
             <th></th>
             <th></th>
         </tr>

@@ -11,7 +11,7 @@ if (!$select_post_query) {
 $count = mysqli_num_rows($select_post_query);
 
 if ($count == 0) {
-    echo "<h1> No Result </h1>";
+    echo "<h1> No se han encontrado resultados </h1>";
 } else {
 
     while ($row = mysqli_fetch_assoc($select_post_query)) {
@@ -27,11 +27,11 @@ if ($count == 0) {
             <?php echo $post_title; ?>
         </h2>
         <p class="lead">
-            by <a href='index.php?author=<?php echo $post_author; ?>'><?php echo $post_author; ?></a>
+            Creador <a href='index.php?author=<?php echo $post_author; ?>'><?php echo $post_author; ?></a>
         </p>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
+        <p><span class="glyphicon glyphicon-time"></span> Con Fecha: <?php echo $post_date; ?></p>
         <hr>
-        <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
+        <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>">
         <hr>
         <p><?php echo $post_content; ?></p>
 

@@ -52,11 +52,11 @@
 
 <div class="popup-overlay" id="popupOverlay" style="display: none;"></div>
 <div class="popup" id="popup" style="display: none;">
-    <h2>Confirm deletion</h2>
-    <p>Are you sure you want to delete the  user <b></b> ?</p>
+    <h2>Confirmar</h2>
+    <p>Estás seguro de querer eliminar el usuario: <b></b> ?</p>
     <form method="post">
-        <button type="submit">Delete</button>
-        <button type="button" onclick="hidePopup()">Cancel</button>
+        <button type="submit">Eliminar</button>
+        <button type="button" onclick="hidePopup()">Cancelar</button>
     </form>
 </div>
 

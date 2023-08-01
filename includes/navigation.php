@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="./">Start Bootstrap</a>
+            <a class="navbar-brand" href="./">CMS</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -53,10 +53,10 @@
                             <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user'></i>" . $_SESSION['username'] . "<b class='caret'></b></a>
                             <ul class='dropdown-menu'>
                                 <li>
-                                    <a href='#'><i class='fa fa-fw fa-user'></i> Profile</a>
+                                    <a href='#'><i class='fa fa-fw fa-user'></i> Perfil</a>
                                 </li>
                                 <li>
-                                    <a href='./functions/logout.php'><i class='fa fa-fw fa-power-off'></i> Log Out</a>
+                                    <a href='./functions/logout.php'><i class='fa fa-fw fa-power-off'></i> Salir</a>
                                 </li>
                             </ul>
                         </li>
@@ -66,7 +66,7 @@
             } else {
                 echo "
                 <p class='navbar-text navbar-right h4'>
-                    <a href='registration.php'>Register</a>
+                    <a href='registration.php'>Registrarse</a>
                 </p>";
             }
             ?>

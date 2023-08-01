@@ -15,29 +15,29 @@
             <div class="row">
                 <div class="col-xs-6 col-xs-offset-3">
                     <div class="form-wrap">
-                        <h1>Register</h1>
+                        <h1 style="margin-bottom: 2.5rem;">Registrarse</h1>
                         <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">
+                                <label for="username">Nombre de usuario</label>
+                                <input type="text" name="username" id="username" class="form-control" placeholder="Nombre de Usuario">
                             </div>
                             <div class="form-group">
-                                <label for="user_firstname">FirstName</label>
-                                <input type="text" class="form-control" name="user_firstname" id="user_firstname">
+                                <label for="user_firstname">Nombre</label>
+                                <input type="text" class="form-control" name="user_firstname" id="user_firstname" placeholder="Nombre">
                             </div>
 
                             <div class="form-group">
-                                <label for="user_lastname">LastName</label>
-                                <input type="text" class="form-control" name="user_lastname" id="user_lastname">
+                                <label for="user_lastname">Apellidos</label>
+                                <input type="text" class="form-control" name="user_lastname" id="user_lastname" placeholder="Apellidos">
                             </div>
                             <div class="form-group">
                                 <label for="user_email">Email</label>
-                                <input type="email" name="user_email" id="user_email" class="form-control" placeholder="somebody@example.com">
+                                <input type="email" name="user_email" id="user_email" class="form-control" placeholder="Correo@ejemplo.com">
                             </div>
                             <div class="form-group">
-                                <label for="user_password">User Password</label>
+                                <label for="user_password">Contraseña</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" name="user_password" id="user_password">
+                                    <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Contraseña">
                                     <span class="input-group-addon" onclick="checkPassword()">
                                         <span id="password_icon" class="glyphicon glyphicon-eye-open"></span>
                                     </span>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="user_image">Post Image</label>
+                                <label for="user_image">Seleccionar Imagen</label>
                                 <input type="file" name="user_image" id="user_image">
                             </div>
                             <?php
@@ -72,7 +72,7 @@
                                 </div>";
                             }
                             ?>
-                            <input type="submit" name="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Register">
+                            <input type="submit" name="submit" id="btn-login" class="btn btn-primary btn-lg btn-block" value="Registrarse">
                         </form>
 
                     </div>

@@ -26,14 +26,14 @@ if (isset($_POST['checkBoxArray'])) {
 <form action="./posts.php" method="post" id="formMultipleOptions">
     <div class="col-xs-4" id="bulkOptionContainer">
         <select class="form-control" name="option" id="option">
-            <option value="" default>Select Options</option>
-            <option value="published">Publish</option>
-            <option value="draft">Draft</option>
-            <option value="delete">Delete</option>
+            <option value="" default>Seleccionar acción</option>
+            <option value="published">Publicar</option>
+            <option value="draft">Borrador</option>
+            <option value="delete">Borrar</option>
         </select>
     </div>
     <div class="col-xs-4" style="margin-bottom: 2rem;">
-        <input type="submit" name="submit" class="btn btn-success" value="Apply">
+        <input type="submit" name="submit" class="btn btn-success" value="Aplicar">
     </div>
 </form>
 
@@ -42,15 +42,15 @@ if (isset($_POST['checkBoxArray'])) {
         <tr>
             <th><input id="selectAllBoxes" type="checkbox"></th>
             <th>Id</th>
-            <th>Author</th>
-            <th>Title</th>
-            <th>Category ID</th>
-            <th>Status</th>
-            <th>Image</th>
+            <th>Autor</th>
+            <th>Titulo</th>
+            <th>Categoría ID</th>
+            <th>Estado</th>
+            <th>Imagen</th>
             <th>Tags</th>
-            <th>Comments</th>
-            <th>Views</th>
-            <th>Date</th>
+            <th>Comentarios</th>
+            <th>Vistas</th>
+            <th>Fecha</th>
             <th></th>
             <th></th>
         </tr>

@@ -14,10 +14,10 @@ function registration()
         $user_image_temp = isset($_POST['user_image']) ? $_FILES['user_image']['tmp_name'] : null;
 
         if (empty($username) || empty($user_email) || empty($user_password) || empty($user_firstname) || empty($user_lastname)) {
-            return "Fields can't be empty";
+            return "Los campos no pueden estar vacios";
         } else {
             if (check_user($username)) {
-                return "User already exist";
+                return "El usuario ya está en uso";
             } else {
                 $username = htmlspecialchars(($username));
                 $user_email = htmlspecialchars(($user_email));

@@ -15,8 +15,8 @@ function show_categories()
         echo "<tr>
         <td>{$cat_id}</td>
         <td>{$cat_title}</td>
-        <td><a href='categories.php?delete={$cat_id}&del_cat_title={$cat_title}'>Delete</a></td>
-        <td><a href='categories.php?edit={$cat_id}'>Edit</a></td>
+        <td><a href='categories.php?delete={$cat_id}&del_cat_title={$cat_title}'>Eliminar</a></td>
+        <td><a href='categories.php?edit={$cat_id}'>Editar</a></td>
         </tr>";
     }
 }

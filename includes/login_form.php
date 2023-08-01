@@ -1,12 +1,12 @@
 <div class="well">
-    <h4>Login</h4>
+    <h4>Iniciar Sesión</h4>
     <form action="" method="post">
         <div class="form-group">
-            <input name="username" type="text" class="form-control" placeholder="Enter Name">
+            <input name="username" type="text" class="form-control" placeholder="Nombre de Usuario">
         </div>
         <div class="form-group">
             <div class="input-group">
-                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
                 <span class="input-group-addon" onclick="checkPassword()">
                     <span id="password_icon" class="glyphicon glyphicon-eye-open"></span>
                 </span>
@@ -37,7 +37,7 @@
         }
         ?>
         <div class="form-group">
-            <button class="btn btn-primary" name="login" type="submit">Submit</button>
+            <button class="btn btn-primary" name="login" type="submit">Iniciar Sesión</button>
         </div>
     </form>
 </div>

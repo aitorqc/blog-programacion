@@ -5,13 +5,13 @@
 
     <!-- Blog Search Well -->
     <div class="well">
-        <h4>Blog Tags Search</h4>
+        <h4>Buscar por Tags</h4>
         <form action="index.php" method="get">
             <div class="input-group">
-                <input name="search_term" type="text" class="form-control" placeholder="Search for...">
+                <input name="search_term" type="text" class="form-control" placeholder="Buscar...">
                 <div class="input-group-btn">
                     <button type="submit" class="btn btn-default" aria-label="Help">
-                        GO
+                        Buscar
                     </button>
                 </div>
             </div>
@@ -33,7 +33,7 @@
         $query = 'SELECT * FROM categories';
         $select_all_categories_query = mysqli_query($connection, $query);
         ?>
-        <h4>Blog Categories</h4>
+        <h4>Categorías</h4>
         <div class="row">
             <div class="col-lg-6">
                 <ul class="list-unstyled">
