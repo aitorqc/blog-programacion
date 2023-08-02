@@ -7,7 +7,7 @@ function updateLastActivity() {
             }
         }
     };
-    xhttp.open("GET", "./admin/functions/update_last_activity.php", true);
+    xhttp.open("GET", "/cms/admin/functions/update_last_activity.php", true);
     xhttp.send();
 }
 

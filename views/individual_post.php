@@ -31,7 +31,7 @@ if ($count == 0) {
         </p>
         <p><span class="glyphicon glyphicon-time"></span> Con Fecha: <?php echo $post_date; ?></p>
         <hr>
-        <img class="img-responsive" src="../images/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>">
+        <img class="img-responsive" src="/cms/images/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>">
         <hr>
         <p><?php echo $post_content; ?></p>
 

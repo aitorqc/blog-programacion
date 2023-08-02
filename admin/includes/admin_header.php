@@ -6,12 +6,12 @@ session_start();
 <?php
 if (isset($_SESSION['user_role'])) {
     if ($_SESSION['user_role'] !== 'admin') {
-        header("Location: ../");
+        header("Location: /cms/");
         exit();
     } else {
     }
 } else {
-    header("Location: ../");
+    header("Location: /cms/");
     exit();
 }
 ?>

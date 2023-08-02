@@ -15,9 +15,9 @@ if ($_SESSION['username']) {
     $_SESSION['lastname'] = null;
     $_SESSION['user_role'] = null;
 
-    header('Location: ../');
+    header('Location: /cms/');
     exit();
 } else {
-    header('Location: ../');
+    header('Location: /cms/');
     exit();
 }

@@ -6,3 +6,8 @@ RewriteRule ^category/(\d+)$ index.php?category=$1 [NC,L]
 RewriteRule ^tag/([^/]+)$ index.php?search_term=$1 [NC,L]
 RewriteRule ^post/(\d+)$ index.php?p_id=$1 [NC,L]
 RewriteRule ^author/([^/]+)$ index.php?author=$1 [NC,L]
+
+RewriteRule ^page/(\d+)$ index.php?page=$1 [NC,L]
+RewriteRule ^category/(\d+)/page/(\d+)$ index.php?category=$1&page=$2 [NC,L]
+RewriteRule ^tag/([^/]+)/page/(\d+)$ index.php?search_term=$1&page=$2 [NC,L]
+RewriteRule ^author/([^/]+)/page/(\d+)$ index.php?author=$1&page=$2 [NC,L]

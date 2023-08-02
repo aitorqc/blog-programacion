@@ -2,11 +2,11 @@
     <h4>Iniciar Sesión</h4>
     <form action="" method="post">
         <div class="form-group">
-            <input name="username" type="text" class="form-control" placeholder="Nombre de Usuario">
+            <input name="username" type="text" class="form-control" placeholder="Nombre de Usuario" autocomplete="username">
         </div>
         <div class="form-group">
             <div class="input-group">
-                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" autocomplete="current-password">
                 <span class="input-group-addon" onclick="checkPassword()">
                     <span id="password_icon" class="glyphicon glyphicon-eye-open"></span>
                 </span>

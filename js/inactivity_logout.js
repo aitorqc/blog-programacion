@@ -1,7 +1,8 @@
-var inactivityTimeout = 900000;
+var inactivityTimeout = 200000;
 var logoutTimer;
 
 function resetLogoutTimer(ev) {
+    console.log(ev);
     clearTimeout(logoutTimer);
     logoutTimer = setTimeout(logoutInactiveUser, inactivityTimeout);
 }
@@ -11,5 +12,5 @@ document.addEventListener("keydown", resetLogoutTimer);
 document.addEventListener('scroll', resetLogoutTimer);
 
 function logoutInactiveUser() {
-    window.location.href = "./functions/logout.php";
+    window.location.href = "/cms/functions/logout.php";
 }
