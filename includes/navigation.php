@@ -44,7 +44,7 @@
                 if ($_SESSION['user_role'] == 'admin') {
                     echo "
                     <p class='navbar-text navbar-right h4'>
-                        <a href='admin'>Admin</a>
+                        <a href='/cms/admin'>Admin</a>
                     </p>";
                 } else if ($_SESSION['user_role'] == 'user') {
                     echo "

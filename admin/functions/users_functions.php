@@ -17,7 +17,6 @@ function show_users()
         $user_email = $row['user_email'];
         $user_image = $row['user_image'];
         $user_role = $row['user_role'];
-        $user_randSalt = $row['user_randSalt'];
 
         $password = str_repeat("*", strlen($user_password));
 
@@ -30,7 +29,6 @@ function show_users()
         <td>{$user_email}</td>
         <td>{$user_image}</td>
         <td>{$user_role}</td>
-        <td>{$user_randSalt}</td>
         <td>
         <form action='./users.php' method='post'>
             <input type='hidden' name='delete' value='{$user_id}'>

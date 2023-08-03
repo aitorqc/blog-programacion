@@ -11,9 +11,6 @@
 
  <?php session_write_close(); ?>
 
- <!-- jQuery -->
- <script src="/cms/js/jquery.js"></script>
-
  <!-- Bootstrap Core JavaScript -->
  <script src="/cms/js/bootstrap.min.js"></script>
  <script src="/cms/js/update_user_activity.js"></script>

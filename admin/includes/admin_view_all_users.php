@@ -9,7 +9,6 @@
             <th>Email</th>
             <th>Avatar</th>
             <th>Role</th>
-            <th>RandSalt</th>
             <th></th>
             <th></th>
         </tr>

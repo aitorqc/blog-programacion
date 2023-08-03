@@ -18,7 +18,7 @@ if (isset($_POST['create_comment'])) {
         $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $comment_post_id";
         $update_comment_count = mysqli_query($connection, $query);
 
-        header("Location: ./index.php?p_id=$comment_post_id");
+        header("Location: /cms/post/$comment_post_id");
     }
 }
 ?>
@@ -41,12 +41,13 @@ if (isset($_SESSION['user_role'])) {
             <button type='submit' class='btn btn-primary' name='create_comment'>Submit</button>
         </form>
     </div>";
+}else{
+    echo "<a href='/cms/'>Inicia sesión para comentar</a>";
 }
 ?>
 <hr>
 
-<!-- Comment -->
-
+<!-- Comments -->
 <?php
 $comment_post_id = $_GET['p_id'];
 

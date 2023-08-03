@@ -5,7 +5,7 @@
 
 <!-- Page Content -->
 <div class="container">
-    <div class="row">
+    <div class="row" <?php echo isset($_GET['p_id']) ? "style='display: flex; justify-content: center;'" : ''; ?>>
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
@@ -25,8 +25,6 @@
                 include './views/category_posts.php';
             } else if (isset($_GET['p_id'])) {
                 include './views/individual_post.php';
-                include './includes/comments.php';
-                include './includes/sidebar.php';
             } else if (isset($_GET['author'])) {
                 include './views/author_posts.php';
             } else {

@@ -16,6 +16,9 @@ session_start();
 
     <title>Blog Home - CMS</title>
 
+    <!-- jQuery -->
+    <script src="/cms/js/jquery.js"></script>
+
     <!-- Bootstrap Core CSS -->
     <link href="/cms/css/bootstrap.min.css" rel="stylesheet">
 

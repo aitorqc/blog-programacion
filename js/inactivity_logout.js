@@ -1,8 +1,7 @@
-var inactivityTimeout = 200000;
+var inactivityTimeout = 500000;
 var logoutTimer;
 
 function resetLogoutTimer(ev) {
-    console.log(ev);
     clearTimeout(logoutTimer);
     logoutTimer = setTimeout(logoutInactiveUser, inactivityTimeout);
 }

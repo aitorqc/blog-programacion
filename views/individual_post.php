@@ -1,3 +1,5 @@
+<?php include './functions/like.php'; ?>
+
 <?php
 $post_id = $_REQUEST['p_id'];
 
@@ -34,11 +36,68 @@ if ($count == 0) {
         <img class="img-responsive" src="/cms/images/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>">
         <hr>
         <p><?php echo $post_content; ?></p>
+        <div class="row" style="margin-top: 3rem;">
+            <?php add_like(); ?>
+            <?php
+            if (isset($_SESSION['user_role'])) {
+            ?>
+                <div class="col-md-6 text-left"> <!-- Columna izquierda alineada a la izquierda -->
+                    <button id="likeButton" class="btn btn-primary" <?php echo (check_like($_SESSION['username'], $post_id)) ? "disabled" : "" ?>> <!-- Añadimos un ID al botón -->
+                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Me gusta
+                    </button>
+                </div>
+            <?php
+            }
+            ?>
+            <div class="col-md-6 col-xs-12 text-right"> <!-- Columna derecha alineada a la derecha -->
+                <!-- Campo para mostrar los likes totales con el icono de corazón -->
+                <span style="font-size: 1.6rem;">
+                    <span><?php echo get_likes($post_id); ?></span>
+                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                </span>
+            </div>
+        </div>
 
         <hr>
+        <script>
+            $(document).ready(function() {
+                // Verificamos si el botón con ID 'likeButton' existe antes de agregar el evento click
+                if ($('#likeButton').length) {
+                    let post_id = <?php echo $post_id; ?>;
+                    let username = '<?php echo $_SESSION['username']; ?>';
 
+                    // Usamos el ID 'likeButton' para seleccionar el botón
+                    $('#likeButton').click(function() {
+                        $.ajax({
+                            url: "/cms/index.php?p_id=" + post_id,
+                            type: 'post',
+                            data: {
+                                liked: 1,
+                                post_id: post_id, // Sin comillas, para que se use el valor de la variable
+                                username: username, // Sin comillas, para que se use el valor de la variable
+                            },
+                            success: function(response) {
+                                // Maneja la respuesta del servidor
+                                if (response) {
+                                    window.location.href = '/cms/post/<?php echo $post_id; ?>';
+                                } else {
+                                    // Mostrar un mensaje de error si es necesario
+                                    console.error('Hubo un error al agregar el like.');
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                // Maneja el error si ocurre
+                                console.error('Error en la petición AJAX');
+                            }
+                        });
+                    });
+                }
+            })
+        </script>
     <?php
     }
+
+    include './includes/comments.php';
     ?>
 <?php
     $query = "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id={$post_id}";

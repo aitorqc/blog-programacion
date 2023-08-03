@@ -28,6 +28,9 @@
                 </script>
             </div>
         </div>
+        <div class="form-group">
+            <a href="/cms/forgot.php">Has olvidado tu contraseña?</a>
+        </div>
         <?php
         if ($error) {
             echo "
