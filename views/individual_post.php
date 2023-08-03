@@ -45,6 +45,10 @@ if ($count == 0) {
                     <button id="likeButton" class="btn btn-primary" <?php echo (check_like($_SESSION['username'], $post_id)) ? "disabled" : "" ?>> <!-- Añadimos un ID al botón -->
                         <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Me gusta
                     </button>
+                    <button id="dislikeButton" class="btn btn-danger" <?php echo (check_like($_SESSION['username'], $post_id)) ? "disabled" : "" ?>>
+                        <!-- Añadimos un ID al botón -->
+                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> No me gusta
+                    </button>
                 </div>
             <?php
             }
@@ -62,36 +66,60 @@ if ($count == 0) {
         <script>
             $(document).ready(function() {
                 // Verificamos si el botón con ID 'likeButton' existe antes de agregar el evento click
-                if ($('#likeButton').length) {
-                    let post_id = <?php echo $post_id; ?>;
-                    let username = '<?php echo $_SESSION['username']; ?>';
+                let post_id = <?php echo $post_id; ?>;
+                let username = '<?php echo $_SESSION['username']; ?>';
 
-                    // Usamos el ID 'likeButton' para seleccionar el botón
-                    $('#likeButton').click(function() {
-                        $.ajax({
-                            url: "/cms/index.php?p_id=" + post_id,
-                            type: 'post',
-                            data: {
-                                liked: 1,
-                                post_id: post_id, // Sin comillas, para que se use el valor de la variable
-                                username: username, // Sin comillas, para que se use el valor de la variable
-                            },
-                            success: function(response) {
-                                // Maneja la respuesta del servidor
-                                if (response) {
-                                    window.location.href = '/cms/post/<?php echo $post_id; ?>';
-                                } else {
-                                    // Mostrar un mensaje de error si es necesario
-                                    console.error('Hubo un error al agregar el like.');
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                // Maneja el error si ocurre
-                                console.error('Error en la petición AJAX');
+                // Usamos el ID 'likeButton' para seleccionar el botón
+                $('#likeButton').click(function() {
+                    $.ajax({
+                        url: "/cms/index.php?p_id=" + post_id,
+                        type: 'post',
+                        data: {
+                            liked: 1,
+                            post_id: post_id, // Sin comillas, para que se use el valor de la variable
+                            username: username, // Sin comillas, para que se use el valor de la variable
+                        },
+                        success: function(response) {
+                            // Maneja la respuesta del servidor
+                            if (response) {
+                                window.location.href = '/cms/post/<?php echo $post_id; ?>';
+                            } else {
+                                // Mostrar un mensaje de error si es necesario
+                                console.error('Hubo un error al agregar el like.');
                             }
-                        });
+                        },
+                        error: function(xhr, status, error) {
+                            // Maneja el error si ocurre
+                            console.error('Error en la petición AJAX');
+                        }
                     });
-                }
+                });
+
+                // Usamos el ID 'likeButton' para seleccionar el botón
+                $('#dislikeButton').click(function() {
+                    $.ajax({
+                        url: "/cms/index.php?p_id=" + post_id,
+                        type: 'post',
+                        data: {
+                            liked: 0,
+                            post_id: post_id, // Sin comillas, para que se use el valor de la variable
+                            username: username, // Sin comillas, para que se use el valor de la variable
+                        },
+                        success: function(response) {
+                            // Maneja la respuesta del servidor
+                            if (response) {
+                                window.location.href = '/cms/post/<?php echo $post_id; ?>';
+                            } else {
+                                // Mostrar un mensaje de error si es necesario
+                                console.error('Hubo un error al agregar el like.');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            // Maneja el error si ocurre
+                            console.error('Error en la petición AJAX');
+                        }
+                    });
+                });
             })
         </script>
     <?php

@@ -4,14 +4,14 @@ function add_like()
     if (isset($_POST['liked'])) {
         global $connection;
 
+        $liked = $_POST['liked'];
         $username = htmlspecialchars($_POST['username']);
         $post_id = htmlspecialchars($_POST['post_id']);
 
-        $query = "INSERT INTO likes (username, post_id)
-        VALUES (?, ?)";
+        $query = "INSERT INTO likes (username, post_id, liked) VALUES (?, ?, ?)";
 
         $stmt = mysqli_prepare($connection, $query);
-        mysqli_stmt_bind_param($stmt, 'si', $username, $post_id);
+        mysqli_stmt_bind_param($stmt, 'sii', $username, $post_id, $liked);
 
         if (mysqli_stmt_execute($stmt)) {
             // Todo se ejecutó correctamente, enviar éxito
@@ -50,10 +50,10 @@ function get_likes($post_id)
 {
     global $connection;
 
-    $query = "SELECT * FROM likes WHERE post_id=?";
+    $query = "SELECT * FROM likes WHERE post_id=? AND liked=1";
 
     $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, 's', $post_id);
+    mysqli_stmt_bind_param($stmt, 'i', $post_id);
 
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
