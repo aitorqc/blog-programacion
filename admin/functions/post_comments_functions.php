@@ -22,7 +22,7 @@ function show_post_comments()
             $comment_author_result = mysqli_query($connection, $comment_author_query);
 
             // Inicializar $comment_email con un valor predeterminado
-            $comment_email = 'Usuario desconocido';
+            $comment_email = '[Usuario Eliminado]';
 
             // Verificar si la consulta se ejecutó correctamente y si se obtuvo un resultado
             if ($comment_author_result && mysqli_num_rows($comment_author_result) > 0) {
