@@ -10,8 +10,8 @@ function registration()
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
         $user_email = $_POST['user_email'];
-        $user_image = isset($_POST['user_image']) ? $_FILES['user_image']['name'] : null;
-        $user_image_temp = isset($_POST['user_image']) ? $_FILES['user_image']['tmp_name'] : null;
+        $user_image = isset($_FILES['user_image']['name']) ? $_FILES['user_image']['name'] : null;
+        $user_image_temp = isset($_FILES['user_image']['tmp_name']) ? $_FILES['user_image']['tmp_name'] : null;
 
         if (empty($username) || empty($user_email) || empty($user_password) || empty($user_firstname) || empty($user_lastname)) {
             return "Los campos no pueden estar vacios";
@@ -36,7 +36,9 @@ function registration()
                     while ($row = mysqli_fetch_array($select_randSalt_query)) {
                         $salt = $row['user_randSalt'];
                     }
+
                     $user_password = crypt($user_password, $salt);
+
                     $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_image, user_role) 
                 VALUES('{$username}', '{$user_password}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_image}', 'user') ";
 
