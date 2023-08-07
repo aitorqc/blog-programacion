@@ -17,15 +17,21 @@ function show_post_comments()
             $comment_approve = $row['comment_approve'];
             $comment_date = $row['comment_date'];
 
-            $comment_author_query = "SELECT user_email FROM users WHERE user_name='$comment_author'";
+            // Consulta para obtener el user_email del comment_author
+            $comment_author_query = "SELECT user_email FROM users WHERE username='$comment_author'";
             $comment_author_result = mysqli_query($connection, $comment_author_query);
-            if ($comment_author_result) {
+
+            // Inicializar $comment_email con un valor predeterminado
+            $comment_email = 'Usuario desconocido';
+
+            // Verificar si la consulta se ejecutó correctamente y si se obtuvo un resultado
+            if ($comment_author_result && mysqli_num_rows($comment_author_result) > 0) {
                 // Obtener el resultado de la consulta
                 $user_email_row = mysqli_fetch_assoc($comment_author_result);
                 // Obtener el valor de user_email
                 $comment_email = $user_email_row['user_email'];
             }
-            
+
             echo "
             <tr>
                 <td>$comment_id</td>
