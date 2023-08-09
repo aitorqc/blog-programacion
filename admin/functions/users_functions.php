@@ -70,28 +70,17 @@ function add_user()
 
                 move_uploaded_file($user_image_temp, "../images/users_avatars/$user_image");
 
-                $query = "SELECT user_randSalt FROM users";
-                $select_randSalt_query = mysqli_query($connection, $query);
+                $user_password = password_hash($user_password, PASSWORD_DEFAULT);
 
-                if (!$select_randSalt_query) {
-                    die("QUERY FAILED" . mysqli_error($connection));
-                } else {
-                    while ($row = mysqli_fetch_array($select_randSalt_query)) {
-                        $salt = $row['user_randSalt'];
-                    }
-
-                    $user_password = crypt($user_password, $salt);
-
-                    $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_image, user_role) 
+                $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_image, user_role) 
                 VALUES('{$username}', '{$user_password}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_image}', '{$user_role}') ";
 
-                    $create_user_query = mysqli_query($connection, $query);
+                $create_user_query = mysqli_query($connection, $query);
 
-                    if (!$create_user_query) {
-                        die('QUERY FAILED' . mysqli_error($connection));
-                    } else {
-                        header("location: index.php");
-                    }
+                if (!$create_user_query) {
+                    die('QUERY FAILED' . mysqli_error($connection));
+                } else {
+                    header("location: index.php");
                 }
             }
         }
@@ -120,18 +109,12 @@ function update_user($the_user_id)
 
     if (isset($_POST['update_user'])) {
 
-        $username = $_POST['username'];
         $user_password = $_POST['user_password'];
-        $user_firstname = $_POST['user_firstname'];
-        $user_lastname = $_POST['user_lastname'];
         $user_email = $_POST['user_email'];
         $user_image = $_FILES['user_image']['name'];
         $user_image_temp   = $_FILES['user_image']['tmp_name'];
         $user_role = $_POST['user_role'];
 
-        $username = strtolower($username);
-        $user_firstname = strtolower($user_firstname);
-        $user_lastname = strtolower($user_lastname);
         $user_role = strtolower($user_role);
 
         if (empty($user_image)) {
@@ -147,13 +130,10 @@ function update_user($the_user_id)
             $salt = $row['user_randSalt'];
         }
 
-        $user_password = crypt($user_password, $salt);
+        $user_password = password_hash($user_password, PASSWORD_DEFAULT);
 
         $query = "UPDATE users SET ";
-        $query .= "username  = '{$username}', ";
         $query .= "user_password = '{$user_password}', ";
-        $query .= "user_firstname   =  '{$user_firstname}', ";
-        $query .= "user_lastname = '{$user_lastname}', ";
         $query .= "user_email = '{$user_email}', ";
         $query .= "user_image   = '{$user_image}', ";
         $query .= "user_role= '{$user_role}' ";
