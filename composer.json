@@ -1,0 +1,17 @@
+{
+    "name": "aquin/cms",
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aquin\\Cms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "aquicor",
+            "email": "aquinoacordero@gmail.com"
+        }
+    ]
+}

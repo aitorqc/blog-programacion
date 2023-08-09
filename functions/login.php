@@ -7,38 +7,37 @@ function user_login()
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $query = "SELECT user_randSalt FROM users";
-        $select_randSalt_query = mysqli_query($connection, $query);
+        $query = "SELECT user_password FROM users WHERE username='{$username}'";
+        $select_hashed_password_query = mysqli_query($connection, $query);
 
-        if (!$select_randSalt_query) {
-            die("QUERY FAILED" . mysqli_error($connection));
-        } else {
-            while ($row = mysqli_fetch_array($select_randSalt_query)) {
-                $salt = $row['user_randSalt'];
-            }
-            $password = crypt($password, $salt);
+        if ($select_hashed_password_query) {
+            $row = mysqli_fetch_assoc($select_hashed_password_query);
+            $stored_hashed_password = $row['user_password'];
 
-            $query = "SELECT * FROM users WHERE username='{$username}' AND user_password='{$password}'";
-            $select_user_query = mysqli_query($connection, $query);
-        }
-
-        if (isset($select_user_query) && mysqli_num_rows($select_user_query) > 0) {
-            while ($row = mysqli_fetch_assoc($select_user_query)) {
-                $_SESSION['username'] = $row['username'];
-                $_SESSION['firstname'] = $row['user_firstname'];
-                $_SESSION['lastname'] = $row['user_lastname'];
-                $_SESSION['email'] = $row['user_email'];
-                $_SESSION['user_role'] = $row['user_role'];
+            if (password_verify($password, $stored_hashed_password)) {
+                $query = "SELECT * FROM users WHERE username='{$username}'";
+                $select_user_query = mysqli_query($connection, $query);
+            } else {
+                return "Incorrect username or password";
             }
 
-            $session = session_id();
-            $time = time();
-            $time = date('Y-m-d H:i:s');
-            insert_user_online($session, $time);
+            if (isset($select_user_query) && mysqli_num_rows($select_user_query) > 0) {
+                while ($row = mysqli_fetch_assoc($select_user_query)) {
+                    $_SESSION['id'] = $row['user_id'];
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['email'] = $row['user_email'];
+                    $_SESSION['user_role'] = $row['user_role'];
+                }
 
-            header("Location: /cms/admin/index.php");
-            ob_end_flush(); // Enviar los datos almacenados en búfer después de la cabecera de redirección
-            exit();
+                $session = session_id();
+                $time = time();
+                $time = date('Y-m-d H:i:s');
+                insert_user_online($session, $time);
+
+                header("Location: /cms/admin/index.php");
+                ob_end_flush(); // Enviar los datos almacenados en búfer después de la cabecera de redirección
+                exit();
+            }
         } else {
             return "Incorrect username or password";
         }
