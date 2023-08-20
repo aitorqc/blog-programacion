@@ -26,6 +26,8 @@ if (isset($_SESSION['user_role'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
+    <link rel="icon" href="/images/icon.png" type="image/png">
 
     <title>SB Admin - Bootstrap Admin Template</title>
 
